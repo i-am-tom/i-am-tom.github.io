@@ -1,0 +1,7 @@
+# Config!
+baseurl: ""
+description: "This website chronicles my folly and ramblings, currently centred in <strong>Bath, UK</strong>, where I'm living and working."
+permalink: pretty
+tagline: "Even better than IE6"
+title: "Tom Harding"
+url: "http://www.tomharding.me"

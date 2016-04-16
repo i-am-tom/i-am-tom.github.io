@@ -1,0 +1,102 @@
+@font-face {
+  font-family: 'Fira Code';
+  src: url('/fonts/FiraCode.otf');
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url('/fonts/OpenSans.ttf');
+}
+
+@font-face {
+  font-family: 'RobotoSlab';
+  src: url('/fonts/RobotoSlab.ttf');
+}
+
+body,
+html {
+  margin: 0px;
+  padding: 0px;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: 'OpenSans', sans-serif;
+  letter-spacing: 0px;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+a.site-title {
+  border-bottom: 1px solid #EEE;
+  color: $colour--dark;
+  display: block;
+  font-family: 'RobotoSlab', serif;
+  font-size: 32px;
+  line-height: 56px;
+  margin: 0px auto 10px;
+  max-width: 800px;
+  text-align: center;
+  width: 100%;
+
+  & small {
+    color: $colour--light;
+    font-weight: bold;
+  }
+}
+
+ul.blog-posts {
+  font-size: 16px;
+  list-style-type: none;
+  margin: 0px auto;
+  padding: 0px;
+  max-width: 800px;
+  width: 100%;
+}
+
+li.blog-post {
+  min-height: 40px;
+  margin: 0px;
+  line-height: 40px;
+  padding: 0px 10px;
+}
+
+article {
+  font-size: 20px;
+  margin: 0px auto;
+  max-width: 800px;
+  width: 100%;
+}
+
+.post-header {
+  color: #666;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+pre {
+  border: 1px solid #EEE;
+  padding: 10px;
+  font-size: 18px;
+}
+
+code { font-family: 'Fira Code', monospace }
+
+nav.pagination {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0px; // Stops extra padding.
+  margin: 0px auto;
+  width: 250px;
+
+  & a {
+    box-sizing: border-box;
+    color: #DDD;
+    display: inline-block;
+    font-size: 18px;
+    text-align: center;
+    width: 125px;
+  }
+}
