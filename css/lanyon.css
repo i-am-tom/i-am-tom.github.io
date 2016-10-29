@@ -99,6 +99,7 @@ h6 {
 p {
   margin-bottom: 1rem;
   margin-top: 0;
+  text-align: justify;
 }
 
 strong { color: #303030 }
@@ -170,6 +171,8 @@ pre code {
   font-size: 100%;
   padding: 0;
 }
+
+p code { display: inline-block }
 
 /* -- Pygments -- */
 
@@ -293,7 +296,7 @@ tbody tr:nth-child(odd) th { background-color: #F9F9F9 }
 .sidebar-item p:last-child { margin-bottom: 0 }
 
 .sidebar-item strong {
-  color: #FFF;
+  color: rgba(255, 255, 255, .8);
   font-weight: bold;
 }
 
