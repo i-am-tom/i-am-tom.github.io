@@ -356,15 +356,11 @@ a.sidebar-nav-item:focus {
   width: 1rem;
 }
 
-.sidebar-toggle:active,
-#sidebar-checkbox:focus   ~ .sidebar-toggle,
 #sidebar-checkbox:checked ~ .sidebar-toggle {
   background-color: #009381;
   color: #FFF;
 }
 
-.sidebar-toggle:active:before,
-#sidebar-checkbox:focus ~ .sidebar-toggle:before,
 #sidebar-checkbox:checked ~ .sidebar-toggle:before {
   background-image: -webkit-linear-gradient(to bottom, #FFF, #FFF 20%, #009381 20%, #009381 40%, #FFF 40%, #FFF 60%, #009381 60%, #009381 80%, #FFF 80%, #FFF 100%);
   background-image:    -moz-linear-gradient(to bottom, #FFF, #FFF 20%, #009381 20%, #009381 40%, #FFF 40%, #FFF 60%, #009381 60%, #009381 80%, #FFF 80%, #FFF 100%);
@@ -372,7 +368,7 @@ a.sidebar-nav-item:focus {
   background-image:         linear-gradient(to bottom, #FFF, #FFF 20%, #009381 20%, #009381 40%, #FFF 40%, #FFF 60%, #009381 60%, #009381 80%, #FFF 80%, #FFF 100%);
 }
 
-@media (min-width: 30.1em) { .sidebar-toggle { position: fixed } }
+/*@media (min-width: 30.1em) { .sidebar-toggle { position: fixed } }*/
 @media print { .sidebar-toggle { display: none } }
 
 .wrap,

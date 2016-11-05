@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Peano's Forte
+description: A little bit of an intro to recursion and induction with the help of Giuseppe Peano.
 ---
 
 A hundred-ish years ago, long before Pokémon and the [Slap Chop](https://www.youtube.com/watch?v=rUbWjIKxrrs), there lived a clever one named [Giuseppe Peano](https://en.wikipedia.org/wiki/Giuseppe_Peano), who came up with a neat way to describe the natural numbers (`0, 1, 2, 3, ...`):
