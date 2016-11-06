@@ -5,7 +5,7 @@ title: Home
 
 <div class="posts">
   {% for post in site.posts %}
-  <div class="post">
+  <article class="post" role="article">
     <h1 class="post-title">
       <a href="{{ site.baseurl }}{{ post.url }}">
         {{ post.title }}
@@ -15,7 +15,7 @@ title: Home
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
     {{ post.content }}
-  </div>
+  </article>
   {% endfor %}
 </div>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
   {% include head.html %}
 
@@ -10,24 +10,30 @@
     <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
          content to avoid any CSS collisions with our real content. -->
     <div class="wrap">
-      <div class="masthead">
+      <header class="masthead" role="banner">
         <div class="container">
           <h3 class="masthead-title">
             <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
             <small>{{ site.tagline }}</small>
           </h3>
         </div>
-      </div>
+      </header>
 
-      <div class="container content">
+      <main class="container content" role="main">
         {{ content }}
-      </div>
+      </main>
     </div>
 
-    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+    <label for="sidebar-checkbox" class="sidebar-toggle">
+      <i class="fa fa-bars" aria-hidden="true"></i>
+      <span class="sr-only">Show menu</span>
+    </label>
 
     <script>
       (function(document) {
+        // Of course, this won't work without JS, but the menu can
+        // still be hidden with CSS.
+
         var toggle = document.querySelector('.sidebar-toggle');
         var sidebar = document.querySelector('#sidebar');
         var checkbox = document.querySelector('#sidebar-checkbox');

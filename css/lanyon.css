@@ -256,7 +256,7 @@ tbody tr:nth-child(odd) th { background-color: #F9F9F9 }
 .masthead-title a { color: #009381 }
 
 .masthead-title small {
-  color: #C0C0C0;
+  color: #595959;
   font-size: 75%;
   font-weight: 400;
   letter-spacing: 0;
@@ -345,27 +345,14 @@ a.sidebar-nav-item:focus {
   top: .8rem;
 }
 
-.sidebar-toggle:before {
-  background-image: -webkit-linear-gradient(to bottom, #555, #555 20%, #FFF 20%, #FFF 40%, #555 40%, #555 60%, #FFF 60%, #FFF 80%, #555 80%, #555 100%);
-  background-image:    -moz-linear-gradient(to bottom, #555, #555 20%, #FFF 20%, #FFF 40%, #555 40%, #555 60%, #FFF 60%, #FFF 80%, #555 80%, #555 100%);
-  background-image:     -ms-linear-gradient(to bottom, #555, #555 20%, #FFF 20%, #FFF 40%, #555 40%, #555 60%, #FFF 60%, #FFF 80%, #555 80%, #555 100%);
-  background-image:         linear-gradient(to bottom, #555, #555 20%, #FFF 20%, #FFF 40%, #555 40%, #555 60%, #FFF 60%, #FFF 80%, #555 80%, #555 100%);
-  content: "";
-  display: inline-block;
-  height: .75rem;
-  width: 1rem;
-}
-
 #sidebar-checkbox:checked ~ .sidebar-toggle {
   background-color: #009381;
   color: #FFF;
 }
 
-#sidebar-checkbox:checked ~ .sidebar-toggle:before {
-  background-image: -webkit-linear-gradient(to bottom, #FFF, #FFF 20%, #009381 20%, #009381 40%, #FFF 40%, #FFF 60%, #009381 60%, #009381 80%, #FFF 80%, #FFF 100%);
-  background-image:    -moz-linear-gradient(to bottom, #FFF, #FFF 20%, #009381 20%, #009381 40%, #FFF 40%, #FFF 60%, #009381 60%, #009381 80%, #FFF 80%, #FFF 100%);
-  background-image:     -ms-linear-gradient(to bottom, #FFF, #FFF 20%, #009381 20%, #009381 40%, #FFF 40%, #FFF 60%, #009381 60%, #009381 80%, #FFF 80%, #FFF 100%);
-  background-image:         linear-gradient(to bottom, #FFF, #FFF 20%, #009381 20%, #009381 40%, #FFF 40%, #FFF 60%, #009381 60%, #009381 80%, #FFF 80%, #FFF 100%);
+.sidebar-checkbox:focus ~ .sidebar-toggle {
+  background-color: rgba(0, 147, 129, 0.75);
+  color: #FFF;
 }
 
 /*@media (min-width: 30.1em) { .sidebar-toggle { position: fixed } }*/

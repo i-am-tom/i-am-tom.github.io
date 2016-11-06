@@ -78,4 +78,3 @@ So, not the longest post, but that's all from me for today. A lot of functional 
 This post is actually here to provide some background reading for a [PHP talk](https://github.com/i-am-tom/php-folding-talk) I'm doing next week on monoids and folds. The majority of the talk is around the folding, rather than the monoids, but check out the README for a bigger example of how this all works together.
 
 Take care &hearts;
-
