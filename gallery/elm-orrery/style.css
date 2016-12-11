@@ -1,0 +1,55 @@
+html,
+body { background: #111 }
+
+.masthead { border-bottom-color: #333 }
+.masthead-title small { color: #999 }
+
+.sidebar-toggle { background: #111 !important }
+
+hr { border-color: #333 }
+
+svg
+{ display: block
+; margin: 0px auto
+; max-width: 100%
+}
+
+ellipse
+{ stroke: #333
+; stroke-dasharray: 2
+; fill: none;
+}
+
+h1,
+h2
+{ color: #CCC
+; font-weight: 100
+; margin: 20px 0px
+}
+
+code
+{ background: #151515
+}
+
+pre
+{ background: #151515
+; color: #CCC
+}
+
+article p
+{ color: #DDD
+; font-family: "PT Serif", Georgia, "Times New Roman", serif
+; font-size: 20px
+; line-height: 1.5
+; margin: 20px auto
+; text-align: justify
+; width: 600px
+}
+
+.highlight .kt { color: #09A }
+.highlight .o { color: #999 }
+
+strong
+{ color: #09A
+; font-weight: bold
+}

@@ -1,0 +1,41 @@
+{ "colour": "#FC0"
+, "orbit": 0
+, "radius": 30
+, "speed": 0
+, "moons":
+  [
+    { "colour": "#A00"
+    , "orbit": 80
+    , "radius": 10
+    , "speed": 9
+    , "moons": []
+    }
+
+  , { "colour": "#6C3"
+    , "orbit": 160
+    , "radius": 15
+    , "speed": 5
+    , "moons":
+      [ { "colour": "#999"
+        , "orbit": 40
+        , "radius": 5
+        , "speed": 11
+        , "moons":
+          [ { "colour": "#C3C"
+            , "orbit": 15
+            , "radius": 3
+            , "speed": 17
+            , "moons": []
+            }
+          ]
+        }
+      ]
+    }
+  , { "colour": "#3FF"
+    , "orbit": 250
+    , "radius": 10
+    , "speed": 3
+    , "moons": []
+    }
+  ]
+}

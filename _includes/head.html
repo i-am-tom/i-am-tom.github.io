@@ -17,6 +17,15 @@
 
   <link rel="stylesheet" href="/css/syntax.css" />
   <link rel="stylesheet" href="/css/lanyon.css" />
+
+  {% if page.custom_css %}
+    <link rel="stylesheet" href="{{ page.custom_css }}" />
+  {% endif %}
+
+  {% if page.custom_js %}
+    <script src="{{ page.custom_js }}"></script>
+  {% endif %}
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 

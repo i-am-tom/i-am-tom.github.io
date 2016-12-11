@@ -351,7 +351,7 @@ a.sidebar-nav-item:focus {
 }
 
 .sidebar-checkbox:focus ~ .sidebar-toggle {
-  background-color: rgba(0, 147, 129, 0.75);
+  background-color: rgba(0, 147, 129, 0.3);
   color: #FFF;
 }
 
