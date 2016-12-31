@@ -7,7 +7,9 @@ custom_css: /gallery/elm-orrery/style.css
 custom_js: /gallery/elm-orrery/script.js
 ---
 
-Hello! Sorry for taking so long to write another post. I've been really quite busy looking for a new place to live and a new office to work in, you see. Anyway, instead of adding _another_ post in my introductory theme, I thought I'd show you how this **Orrery** works! It's written in Elm, which isn't supported by GitHub's highlighter _yet_, so I've modified it a little (_my excuse for why the code blocks look a bit naff_).
+Hello! Sorry for taking so long to write another post. I've been really quite busy looking for a new place to live and a new office to work in, you see.
+
+Anyway, instead of adding _another_ post in my introductory theme, I thought I'd show you how this **Orrery** works! It's written in Elm, which isn't supported by GitHub's highlighter _yet_, so I've modified it a little (_my excuse for why the code blocks look a bit naff_).
 
 <div id="orrery"></div>
 <script>

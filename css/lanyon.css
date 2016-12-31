@@ -172,7 +172,10 @@ pre code {
   padding: 0;
 }
 
-p code { display: inline-block }
+p code {
+  display: inline-block;
+  white-space: nowrap;
+}
 
 /* -- Pygments -- */
 
