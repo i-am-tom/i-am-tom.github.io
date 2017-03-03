@@ -61,9 +61,10 @@ append(4)([1, 2, 3])
 This `reduceRight` operation actually does _nothing_, but starts with a non-empty accumulator, which therefore just gets appended! With the same technique, we can write `concat`:
 
 ```javascript
-const concat = (xs, ys) => xs.reduceRight(
-  (acc, h) => cons(h, acc), ys
-)
+const concat = (xs, ys) =>
+  xs.reduceRight(
+    (acc, h) => cons(h, acc), ys
+  )
 
 // [1, 2, 3, 4]
 concat([1, 2])([3, 4])
