@@ -117,10 +117,14 @@ Bool.prototype.invert = function () {
   })
 }
 
-// Basically shorthand for Bool.prototype.cata.
-Bool.prototype.thenElse = function (then, or) {
-  return this.cata({ True: then, False: or })
-}
+// Shorthand for Bool.prototype.cata?
+Bool.prototype.thenElse =
+  function (then, or) {
+    return this.cata({
+      True: then,
+      False: or
+    })
+  }
 ```
 
 As you can see, for constructors with no arguments, we use handlers with no arguments. Note, too, that different constructors of the same sum type can have **completely different numbers and types of arguments**. This will be _really_ important when we come to examples of the Fantasy Land structures.
@@ -157,7 +161,10 @@ List.from = function (xs) {
 // And a conversion back for convenience!
 List.prototype.toArray = function () {
   return this.cata({
-    Cons: (x, acc) => [x, ... acc.toArray()],
+    Cons: (x, acc) => [
+      x, ... acc.toArray()
+    ],
+
     Nil: () => []
   })
 }
@@ -175,7 +182,7 @@ Sure enough, we can build a list with two constructors, `Cons` and `Nil` (as we 
 
 That's _everything_ you need to know about `daggy` to understand Fantasy Land! If you want to cement your understanding, why not try to add a couple more array functions to the `List` type like `filter` or `reduce`?
 
-Otherwise, we'll be diving in next time with the first of the structures: `Setoid`.
+Otherwise, we have one more thing to talk about before we get involved in the structures: [type signatures](/2017/03/08/fantas-eel-and-specification-2/)!
 
 Until then, take care! &hearts;
 
