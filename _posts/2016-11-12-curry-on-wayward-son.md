@@ -4,8 +4,6 @@ title: Curry On Wayward Son
 description: A practical introduction to curried functions in JavaScript.
 ---
 
-_The other day, I tried to explain currying in a poorly-written Slack message. I'm going to write some JavaScript, and try to do a better job._
-
 Currying is **so hot** right now in the functional-ish JavaScript community. If you've used libraries like [Ramda](http://ramdajs.com/), chances are you've had some exposure. Either way, let's spell it out to be safe:
 
 Functions in languages like [Haskell](https://www.haskell.org/) or [Elm](http://elm-lang.org/) **take one input and return one output**, whether you like it or not. If we want two arguments, we write a function that _returns_ a function (because functions are also values!) and nest them:

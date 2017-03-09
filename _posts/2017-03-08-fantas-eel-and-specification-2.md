@@ -112,6 +112,8 @@ equals :: Setoid a => a -> a -> Bool
 
 The `=>` is new notation. What this means is that the signature to its _right_ is valid if all the conditions to its _left_ are satisfied. In the case of `equals`, the signature `a -> a -> Bool` is valid if `a` is a `Setoid`. Don't worry about what a `Setoid` is just yet, as we'll be covering exactly what it means in the next article. For now, just think of a `Setoid` as _a type for which we can check whether two of its values are equivalent_.
 
+Constraints are _very_ important. When we have a signature that involves a type variable with _no_ constraints, we know that the function **can't manipulate it** in any way. We know by looking at the signature `id :: a -> a` that all it _could_ ever do is return the value it has been given, because we know nothing else about `a` - it could be a number, or a function, or anything! This feeds into an idea called [parametricity](https://en.wikipedia.org/wiki/Parametric_polymorphism) that we'll come back to several times in this series.
+
 In languages like Haskell, the compiler will make sure that the conditions on the left are satisfied at compile-time, which catches a whole host of bugs! However, for our purposes, we'll see that it's simply some _really_ handy documentation.
 
 ## OOP-lease Stop
@@ -132,7 +134,7 @@ Fair enough - it's certainly neater. However, it messes with our pretty signatur
 equals :: Setoid a => a ~> a -> Bool
 ```
 
-The `~>` is the new symbol here. What this means is that `equals` is a _method_ on the thing to the left of `~>`, and the thing to the right is its signature. Back in [the previous article](/2017/03/03/fantas-eel-and-specification/), we saw a `List.prototype.toArray` method. One way we might write the signature for this method is:
+The `~>` is the new symbol here. What this means is that `equals` is a _method_ on the thing to the left of `~>`, and the thing to the right is its signature. Back in [the previous article](/2017/03/03/fantas-eel-and-specification/), we saw a `List.prototype.toArray` method. In the Fantasy Land style, we would write the signature for this method like so:
 
 ```javascript
 // toArray :: List a ~> [a]

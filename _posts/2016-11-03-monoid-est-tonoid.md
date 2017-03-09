@@ -4,7 +4,7 @@ title: Monoid Est Ton Oid
 description: Writing monoids to simplify folds in Javascript.
 ---
 
-_This post is written in English and JavaScript._
+_A post in English and JavaScript._
 
 A while back, I read Hardy Jones' [Comonads, Monoids and Trees](https://joneshf.github.io/programming/2015/12/31/Comonads-Monoids-and-Trees.html) (it's _great_, if you haven't read it), and one passage particularly stuck with me:
 
