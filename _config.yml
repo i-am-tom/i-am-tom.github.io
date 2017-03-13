@@ -2,6 +2,9 @@ baseurl:
 
 description: "This website chronicles my folly and ramblings, currently centred in <strong>London</strong>, where I'm living and working."
 
+gems:
+  - jekyll-feed
+
 permalink: pretty
 
 tagline: "Even better than IE6"
