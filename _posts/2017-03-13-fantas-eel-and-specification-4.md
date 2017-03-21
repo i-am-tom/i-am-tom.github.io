@@ -224,7 +224,7 @@ What if we want to merge **more than two** customers? Well, instead of writing h
 ```javascript
 const mergeMany = strategy => initial =>
   customers => customers.reduce(
-    strategy, initial
+    merge(strategy), initial
   )
 ```
 
