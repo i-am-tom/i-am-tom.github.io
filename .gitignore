@@ -20,6 +20,7 @@ _site
 ._*
 Thumbs.db
 .cache
+.tweet-cache
 .project
 .settings
 .tmproj

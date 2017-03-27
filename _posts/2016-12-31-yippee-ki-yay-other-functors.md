@@ -36,7 +36,7 @@ compose(map(x => x * 2), map(x => x.length))(data)
 map(compose(x => x * 2,      x => x.length))(data)
 ```
 
-_This actually gives us a cool property called **loop fusion**: any two neighbouring `map` calls can be combined into one, meaning we don't have to loop over the data structure twice! In plain English (sort of),_ `map g THEN map f` _is the same as_ `map (g THEN f)` _._
+_This actually gives us a cool property called **loop fusion**: any two neighbouring `map` calls can be combined into one, meaning we don't have to loop over the data structure twice! In plain English (sort of),_ `map f THEN map g` _is the same as_ `map (f THEN g)` _._
 
 By this point, we should be confident that arrays are **structures with a `map` method that respect the identity and composition properties**. Well, are there any _other_ structures that do this? No prizes for guessing what we call them... Let's update that type signature for `map`:
 
