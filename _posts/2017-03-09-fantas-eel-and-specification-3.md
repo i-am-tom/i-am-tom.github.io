@@ -47,8 +47,8 @@ List.prototype.equals = function (that) {
   return this.cata({
     // Note the two different Setoid uses:
     Cons: (head, tail) =>
-      this.head.equals(head) // a
-        && this.tail.equals(tail), // [a]
+      head.equals(that.head) // a
+        && tail.equals(that.tail), // [a]
 
     Nil: () => that instanceof List.Nil
   })
