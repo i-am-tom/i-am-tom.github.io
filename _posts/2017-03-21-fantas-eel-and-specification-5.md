@@ -62,7 +62,8 @@ As a surprisingly good intuition, **monoids encapsulate the logic of `Array.redu
 // A friendly neighbourhood monoid fold.
 // fold :: Monoid m => (a -> m) -> [a] -> m
 const fold = M => xs => xs.reduce(
-  (acc, y) => x.concat(M(y)), M.empty())
+  (acc, x) => acc.concat(M(x)),
+  M.empty())
 
 // We can now use our monoids for (almost) all
 // our array reduction needs!
