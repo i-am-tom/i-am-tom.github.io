@@ -145,8 +145,8 @@ So, we can take a set of functions that act on the same type, and **combine** th
 ## `Chain`
 
 ```javascript
-// m  a ~> (a -> m  b)
-//      -> m  b
+// m  a ~> (a -> m b)
+//      -> m b
 
 // Function a ~> (a -> Function b)
 //            -> Function b
@@ -189,7 +189,9 @@ So, after two `map` calls that transform the input entirely, `chain` _re-introdu
 Function.of = x => _ => x
 
 const MyApp =
-  // Set a "starting value".
+  // Set a "starting value"... or just
+  // a function that _takes_ a starting
+  // value and THEN the environment!
   Function.of('Hello, ')
 
   // Get a variable from environment,
