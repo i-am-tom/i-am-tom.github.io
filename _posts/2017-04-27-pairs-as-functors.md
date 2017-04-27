@@ -163,4 +163,4 @@ execute :: (State, Action) -> State
 
 &hearts;
 
-_PS: if you want to play with the code in this post, here's a [gist of all the code](I've put [all the code in a Gist](https://gist.github.com/i-am-tom/286cb133f74404305814e311e7162351), so why not mess around with it?) required!_
+_PS: if you want to play with the code in this post, I've put [all the code in a Gist](https://gist.github.com/i-am-tom/286cb133f74404305814e311e7162351), so why not mess around with it?_
