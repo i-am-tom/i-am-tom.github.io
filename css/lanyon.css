@@ -437,3 +437,10 @@ footer.sidebar-item { text-align: center }
 }
 
 .related-posts li a:hover small { color: inherit }
+
+/* -- Embedded media -- */
+
+iframe {
+  display: block;
+  margin: 20px auto 40px;
+}

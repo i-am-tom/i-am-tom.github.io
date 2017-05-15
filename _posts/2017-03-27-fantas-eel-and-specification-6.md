@@ -66,10 +66,12 @@ We're there. **That's what a functor does**. It provides some **extended behavio
 
 ```javascript
 // For ANY functor *constructor* U:
-U(x).map(f) === U(f(x)) // [x].map(f) === [f(x)]
+// e.g. [x].map(f) === [f(x)]
+U(x).map(f) === U(f(x))
 
-// Read: `map` just applies the function to the
-// inner value. Using only this rule, we win!
+// Read: `map` just applies the function to
+// the inner value. Using only this rule,
+// we win!
 
 const id = x => x
 
