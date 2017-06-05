@@ -81,8 +81,8 @@ The thing that we didn't explicitly mention about the semigroup laws is that _as
 // In practice, you'd want a generator here...
 // Non-tail-recursion is expensive in JS!
 const chunk = xs => xs.length < 5000
-  ? xs : [ xs.slice(0, 5000)
-         , ... chunk(xs.slice(5000)) ]
+  ? [xs] : [ xs.slice(0, 5000)
+           , ... chunk(xs.slice(5000)) ]
 
 // ... You get the idea.
 const parallelMap = f => xs => xs.map(x =>

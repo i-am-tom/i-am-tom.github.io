@@ -161,7 +161,7 @@ Pair.prototype.map = function (f) {
 // ap :: Pair l r ~> Pair l (r -> s)
 //                -> Pair l s
 Pair.prototype.ap = function (that) {
-  return Pair(this.x, that(this))
+  return Pair(this.x, that.y(this.y))
 }
 
 // But wait...
