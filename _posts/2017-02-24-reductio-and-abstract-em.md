@@ -23,7 +23,7 @@ Let's start with everyone's favourite list function: `map`. What's cool about th
 
 ```javascript
 const map = (f, xs) => xs.reduceRight(
-  (acc, x) => cons(f(x), acc], [])
+  (acc, x) => cons(f(x), acc), []
 )
 
 // [2, 3, 4]

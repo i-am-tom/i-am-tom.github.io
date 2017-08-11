@@ -42,7 +42,7 @@ lift2(
 There's one thing we _can't_ do, though. What if we want to `compose` two `Functor`-returning functions? Take a look at this example:
 
 ```javascript
-//+ prop :: String -> StrMap a -> a
+//+ prop :: String -> StrMap a -> Maybe a
 const prop = k => xs =>
   k in xs ? Just(xs[k])
           : Nothing

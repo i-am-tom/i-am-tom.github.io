@@ -158,7 +158,7 @@ Nothing.ap(Nothing)       // Nothing
 Right(2)    .ap(Right(x => -x)) // Right(-2)
 Left('halp').ap(Right(x => -x)) // Left('halp')
 Right(2)    .ap(Left('eek'))    // Left('eek')
-Left('halp').ap(Left('eek'))    // Left('halp')
+Left('halp').ap(Left('eek'))    // Left('eek')
 ```
 
 

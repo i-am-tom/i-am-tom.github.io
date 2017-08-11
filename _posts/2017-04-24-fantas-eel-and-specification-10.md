@@ -44,7 +44,7 @@ If we have a `Just` on the left, we return it. Otherwise, we **fall back** to th
 ```javascript
 // Just(3) - note the "Nothing"s are
 // usually the result of some functions.
-Just(Nothing).alt(Nothing).alt(Just(3))
+Nothing.alt(Nothing).alt(Just(3))
 ```
 
 It turns out there are **loads** of use cases for `alt`, which isn't too surprising if you look at it as a **functor-level `if/else`**. You can do [database connection failover](https://gist.github.com/i-am-tom/9651cd1e95443c4cbf3953429e988b07), [API/resource routing](https://github.com/slamdata/purescript-routing/blame/master/GUIDE.md#L96-L102), and, most magically of all, [text parsing](https://github.com/purescript/purescript/blob/master/src/Language/PureScript/Parser/Declarations.hs#L161-L169). _Those last two were in PureScript and Haskell respectively, but don't worry: in these languages, `alt` has an operator, written as `<|>`._

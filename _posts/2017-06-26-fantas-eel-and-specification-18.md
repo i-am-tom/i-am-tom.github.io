@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Fantas, Eel, and Specification 18: Bifunctor + Profunctor"
+title: "Fantas, Eel, and Specification 18: Bifunctor and Profunctor"
 description: Yippee Ki-Yay, All the Functors!
 ---
 

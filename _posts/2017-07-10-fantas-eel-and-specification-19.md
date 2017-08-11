@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Fantas, Eel, and Specification 19: Semigroupoid + Category"
+title: "Fantas, Eel, and Specification 19: Semigroupoid and Category"
 description: The True Zen of Fantasy Land
 ---
 
