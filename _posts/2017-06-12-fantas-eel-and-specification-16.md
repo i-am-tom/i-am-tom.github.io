@@ -127,7 +127,7 @@ _So, can I just think of `extend` as `sneakyPeekMap`?_ I mean, you basically can
 //- A root and a list of children!
 //+ type RoseTree a = (a, [RoseTree a])
 const RoseTree = daggy.tagged(
-  'root', 'forest'
+  'RoseTree', ['root', 'forest']
 )
 ```
 
@@ -290,6 +290,6 @@ _So, `Semigroup` is to `Monoid` as `Chain` is to `Monad` as `Extend` is to...?_ 
 
 > With `Writer`, we needed a `Semigroup` on the left to make a `Chain` instance, but we didn't for `Extend`. `Reader` has an `Extend` instance; can you think of how we might write that?
 
-Until then, take a look through [this article's code](https://gist.github.com/i-am-tom/71e351dd3c389a052e99324f152571d3), and take care!
+Until then, take a look through [this article's code](https://gist.github.com/richdouglasevans/61eae2a787bd616f04e63a642a0dca5d), and take care!
 
 &hearts;

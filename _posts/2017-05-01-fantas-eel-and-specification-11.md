@@ -66,7 +66,7 @@ Because `Nothing` and `Left` represent **failure**, we just return the accumulat
 
 ```javascript
 // BTree a
-const BTree = daggy.taggedSum({
+const BTree = daggy.taggedSum('BTree', {
   // Recursion!
   // Node (BTree a) a (BTree a)
   Node: ['left', 'x', 'right'],

@@ -72,7 +72,7 @@ So, we can apply the inner values to our function - _hooray!_ - but look at the 
 With all that out the way, let's look at some examples, shall we? We'll start with the [`Identity` type's `ap`](https://github.com/fantasyland/fantasy-land/blob/master/internal/id.js#L42-L44) from our beloved spec:
 
 ```javascript
-const Identity = daggy.tagged('x')
+const Identity = daggy.tagged('Identity', ['x'])
 
 // map :: Identity a ~> (a -> b)
 //                   -> Identity b

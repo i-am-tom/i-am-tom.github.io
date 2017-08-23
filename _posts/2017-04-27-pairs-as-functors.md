@@ -11,7 +11,7 @@ Two-ish weeks ago, we talked about the [wonderful flexibility of `Function`](/20
 It's pretty simple to write an implementation of `Functor` for a `Pair a b` structure:
 
 ```javascript
-const Pair = daggy.tagged('_1', '_2')
+const Pair = daggy.tagged('Pair', ['_1', '_2'])
 
 // We just transform the second value!
 // map :: Pair a b ~> (b -> c) -> Pair a c
@@ -28,7 +28,7 @@ Now, let's make something _interesting_. Turns out that one useful `Applicative`
 
 ```javascript
 const Pair = T => {
-  const Pair_ = daggy.tagged('_1', '_2')
+  const Pair_ = daggy.tagged('Pair', ['_1', '_2'])
 
   Pair_.prototype.map = function (f) {
     return Pair_(this._1, f(this._2))

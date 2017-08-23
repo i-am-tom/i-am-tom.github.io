@@ -149,11 +149,9 @@ So, we start with some `U (F a)`-type thing, `sequence` it, and land on `F (U a)
 Last up is **composition**, and we're going to need to introduce a type we haven't seen before. `Compose` is a way of combining two `Functor`s into one (and even two `Applicative`s into one!), and it goes a little something like this:
 
 ```javascript
-const { tagged } = require('daggy')
-
 // Type Compose f g a = Compose (f (g a))
 const Compose = (F, G) => {
-  const Compose_ = tagged('stack')
+  const Compose_ = daggy.tagged('Compose', ['stack'])
 
   // compose(F.of, G.of)
   Compose_.of = x =>

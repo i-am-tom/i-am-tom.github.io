@@ -54,7 +54,7 @@ _I've tried to line up the types so it's a bit clearer to see **left-to-right** 
 Now, you can make something very monoid-looking with regular `compose`:
 
 ```javascript
-const Compose = daggy.tagged('f')
+const Compose = daggy.tagged('Compose', ['f'])
 
 //- Remember, for semigroups:
 //- concat :: Semigroup s => s -> s -> s
@@ -82,7 +82,7 @@ Mind blown yet? **Function composition is a monoid**! The `x => x` function is o
 Now, here's the **real wizardry**: can we do the same thing with `mcompose`? Well, we could certainly write a `Semigroup`:
 
 ```javascript
-const MCompose = daggy.tagged('f')
+const MCompose = daggy.tagged('MCompose', ['f'])
 
 //- Just as we did with Compose...
 //+ concat :: Chain m
@@ -285,6 +285,6 @@ Keep fiddling, using those `Task`/`Promise` isomorphisms to do things  in parall
 
 You might be wondering what the _rest_ is for if we now have all the tools we'll ever need, and that's certainly a good question. The rest are **optional**; monadic functional programming doesn't **require** an understanding of `Comonad` or `Profunctor`, but nor does it require an understanding of `Alt` or `Traversable`; these are just **design patterns** to help our code to be as  **polymorphic** as possible.
 
-As always, there's [a **Gist** for the article](https://gist.github.com/i-am-tom/01dfe6a02b5e7664c6d353c69399cd16), so have a **play** with it! Here's a little idea for an exercise: write a **monadic** functional CLI app to play "higher or lower". You know everything you need to know; **trust me**!
+As always, there's [a **Gist** for the article](https://gist.github.com/richdouglasevans/ea96fb5fc8bb55d832a8a20f8c14d4ed), so have a **play** with it! Here's a little idea for an exercise: write a **monadic** functional CLI app to play "higher or lower". You know everything you need to know; **trust me**!
 
 &hearts;

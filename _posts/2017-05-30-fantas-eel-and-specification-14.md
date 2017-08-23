@@ -221,4 +221,4 @@ Next time, we'll look at the **last piece of the puzzle**, and charge through so
 
 &hearts;
 
-As usual, feel free to play with [the post's code gist](https://gist.github.com/i-am-tom/a4cb1f563c97d467eccc5978837ee020) to experiment further!
+As usual, feel free to play with [the post's code gist](https://gist.github.com/richdouglasevans/4c0a197c3d8312961a1c7fba557f4425) to experiment further!
