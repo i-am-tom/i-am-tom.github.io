@@ -49,7 +49,7 @@ What about `Array`? What if we made a type like this:
 //- An array with AT LEAST ONE element.
 //+ data NonEmpty = NonEmpty a (Array a)
 const NonEmpty = daggy.tagged(
-  'head', 'tail'
+  'NonEmpty', ['head', 'tail']
 )
 
 // Extend would function the same way as it
@@ -78,7 +78,7 @@ Now, before we start to assume that all `Comonad` types are just **bastardised `
 ```javascript
 //+ data Store p s = Store (p -> s) p
 const Store = daggy.tagged(
-  'lookup', 'pointer'
+  'Store', ['lookup', 'pointer']
 )
 ```
 
@@ -188,13 +188,13 @@ const isSurvivor = store => {
 
 Now, _why_ did we go to all this trouble? Well, we now have a `Store (Int, Int) Bool` to `Bool` function, which is the exact shape that `extend` needs... and `extend` will (lazily!) apply this function to **every cell on the board!** By using `extend`, we now get to see the **entire board** one step into **the future**. Isn't that _magical_?
 
-> I _strongly_ recommend you look at [the Gist for this article](https://gist.github.com/i-am-tom/e71b6624df574e06088f74fdb1317d9d) and be sure that this makes sense. `Store` is an **unfamiliar beast**.
+> I _strongly_ recommend you look at [the Gist for this article](https://gist.github.com/richdouglasevans/0f9a57e5a52b13e93c0c03630165ecd8) and be sure that this makes sense. `Store` is an **unfamiliar beast**.
 
 ---
 
 Now, there are plenty of other `Comonad` types, but they're not quite as popular as `Monad` types, probably because their use isn't so **obvious**. After all, we can write our applications just using `Monad` types, so this (_unfairly_) ends up in the _advanced_ box. How **rude**!
 
-For now, however, we'll stop here. I will come back to `Comonad` in other posts - they're my latest **obsession** - but `Store` gives a really clear idea about why these are useful. Incidentally, if you want to play the Game of Life, [the article's Gist](https://gist.github.com/i-am-tom/e71b6624df574e06088f74fdb1317d9d) has a working demo!
+For now, however, we'll stop here. I will come back to `Comonad` in other posts - they're my latest **obsession** - but `Store` gives a really clear idea about why these are useful. Incidentally, if you want to play the Game of Life, [the article's Gist](https://gist.github.com/richdouglasevans/0f9a57e5a52b13e93c0c03630165ecd8) has a working demo!
 
 Next time, we'll be looking at `Bifunctor` and `Profunctor`: so simple, we're going to do both at the same time! I promise: these last two are going to be a bit of a **cool-down session**. Until then!
 

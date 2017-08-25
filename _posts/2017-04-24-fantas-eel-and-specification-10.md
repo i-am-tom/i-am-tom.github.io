@@ -84,7 +84,7 @@ So, `Plus` adds to `Alt` what `Monoid` adds to `Semigroup`, and, in fact, what `
 
 ```javascript
 // The value MUST be an Alt-implementer.
-const Alt = daggy.tagged('value')
+const Alt = daggy.tagged('Alt', ['value'])
 
 // Alt is a valid semigroup!
 Alt.prototype.concat = function (that) {
@@ -94,7 +94,7 @@ Alt.prototype.concat = function (that) {
 // The value MUST be a Plus-implementer.
 // And, as usual, we need a TypeRep...
 const Plus = T => {
-  const Plus_ = daggy.tagged('value')
+  const Plus_ = daggy.tagged('Plus', ['value'])
 
   // Plus is a valid semigroup...
   Plus_.prototype.concat =

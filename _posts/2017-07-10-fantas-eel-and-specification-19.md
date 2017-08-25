@@ -72,7 +72,7 @@ We can think of `s a b` (for some `Semigroupoid s`) as "a relationship from `a` 
 //- `Category`!
 const MCompose = M => {
   //+ type MCompose m a b = a -> m b
-  const MCompose_ = daggy.tagged('f')
+  const MCompose_ = daggy.tagged('MCompose', ['f'])
 
   //+ compose :: Chain m
   //+         => MCompose m a b
@@ -96,7 +96,7 @@ Note that we originally wrote a `Monoid` for operations `a -> m a`. With a `Cate
 //- Extend for Semigroupoid, Comonad for
 //- Category!
 //+ type WCompose w a b = w a -> b
-const WCompose = daggy.tagged('f')
+const WCompose = daggy.tagged('WCompose', ['f'])
 
 //+ compose :: Extend w
 //+         => (w a -> b)
@@ -120,7 +120,7 @@ Why limit ourselves? We have **composition**! Let's turn [the `Applicative`](/20
 
 const ApCompose = (A, C) => {
   //+ type ApCompose f c a b = f (c a b)
-  const ApCompose_ = daggy.tagged('f')
+  const ApCompose_ = daggy.tagged('ApCompose', ['f'])
 
   //+ compose :: Apply f
   //+         => Semigroupoid s

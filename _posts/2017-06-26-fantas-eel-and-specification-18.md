@@ -134,7 +134,7 @@ The **left-hand** side looks like `Contravariant`, and the **right-hand** side l
 //- Fancy wrapping around a specific type
 //- of function: an "f a" to a "b"
 //+ Costar f a b = f a -> b
-const Costar = daggy.tagged('run')
+const Costar = daggy.tagged('Costar', ['run'])
 
 //- Contramap with the "before" function,
 //- fold, then apply the "after" function.
@@ -173,7 +173,7 @@ These are, of course, _very_ quick overviews of `Bifunctor` and `Profunctor`. Th
 
 As for `Profunctor`, it's a pretty massive topic once you start digging. `Costar` is the opposite of `Star`, which is an `a -> f b` function; why not think about how to implement that? Would you need any **special conditions** to make it a `Profunctor`?
 
-Take [the article's gist](https://gist.github.com/i-am-tom/d28e4e5d4803e59195a4f872da744fa9), and `bimap` and `promap` until the cows come home, Fantasists, for there is only **one** article left: `Semigroupoid` and `Category`. Expect **high drama**, **hard maths**, and **herds of monoids**. Well, maybe not the second thing...
+Take [the article's gist](https://gist.github.com/richdouglasevans/891564c2d13363b46e49187f28a28ae8), and `bimap` and `promap` until the cows come home, Fantasists, for there is only **one** article left: `Semigroupoid` and `Category`. Expect **high drama**, **hard maths**, and **herds of monoids**. Well, maybe not the second thing...
 
 Until then!
 

@@ -332,7 +332,7 @@ With **purely-functional** code, we know that can't be true, and that all depend
 
 A note to end on: for `Semigroup`, we had `Monoid`, which brought the **empty value**. For `Apply`, we had `Applicative`, which brought the **pure context**. Seems logical that `Chain` would have a similar partner, right? We'll get to it in a _fortnight_.
 
-Until then, mess around with [this post's Gist](https://gist.github.com/i-am-tom/f7b6059ee739764b56e702a612090d27), and **`chain` all the things**! With **parallel** and **sequential** power, you actually now have **everything** you need to write any app in an **entirely pure** manner. Check out [the `fantasy-io` library](https://github.com/fantasyland/fantasy-io) to see how we can encode **any** IO in a `Chain` type and completely **remove** the need for **state**. Go on: **I dare you**!
+Until then, mess around with [this post's Gist](https://gist.github.com/richdouglasevans/d706a914453bdcbdf0df9adf114cfcb6), and **`chain` all the things**! With **parallel** and **sequential** power, you actually now have **everything** you need to write any app in an **entirely pure** manner. Check out [the `fantasy-io` library](https://github.com/fantasyland/fantasy-io) to see how we can encode **any** IO in a `Chain` type and completely **remove** the need for **state**. Go on: **I dare you**!
 
 &hearts;
 

@@ -126,7 +126,7 @@ const concatAll_ = M => xs =>
 This becomes more apparent when we get onto **composed monoids**. Just as we saw with semigroups, let's imagine we want to make `Pair` a monoid:
 
 ```javascript
-const Pair = daggy.tagged('a', 'b')
+const Pair = daggy.tagged('Pair', ['a', 'b'])
 
 Pair.empty = () => // ???
 ```
@@ -138,7 +138,7 @@ Remember: the `empty` value must work for all cases, and a Pair could be made of
 // Pair_ :: (Monoid a, Monoid b) =>
 //   (TypeRep a, TypeRep b) -> (a, b) -> Pair a b
 const Pair_ = (typeA, typeB) => {
-  const Pair = daggy.tagged('a', 'b')
+  const Pair = daggy.tagged('Pair', ['a', 'b'])
 
   Pair.empty = () => Pair(typeA.empty(),
                           typeB.empty())

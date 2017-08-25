@@ -51,7 +51,7 @@ The answer is that **it's up to you** - we can pick any of these as they would a
 For the sake of clarity, we tend to create **separate semigroup types** to encapsulate these ideas. We'll start with a nice, easy one: `Sum`.
 
 ```javascript
-const Sum = daggy.tagged('val')
+const Sum = daggy.tagged('Sum', ['val'])
 
 Sum.prototype.concat = function (that) {
   return Sum(this.val + that.val)
@@ -99,7 +99,7 @@ More generally, this is one of many examples of a `Semigroup` instance with **co
 Let's imagine we have a pair structure, which just holds two values of type `a` and `b` respectively. How do we make the _pair_ a semigroup? Well, if we wanted to `concat` it with another pair of types `a` and `b`, the obvious solution would be to `concat` the two `a` values and the two `b`, and return a pair of the results. To do that, `a` and `b` need to be semigroups:
 
 ```javascript
-const Tuple = daggy.tagged('a', 'b')
+const Tuple = daggy.tagged('Tuple', ['a', 'b'])
 
 // concat :: (Semigroup a, Semigroup b) =>
 //   Tuple a b ~> Tuple a b -> Tuple a b
@@ -110,18 +110,18 @@ Tuple.prototype.concat = function (that) {
 
 // Returns Tuple(Sum(3), Any(true))
 Tuple(Sum(1), Any(false))
-.concat(Tuple(Sum(2), Any(true)))
+    .concat(Tuple(Sum(2), Any(true)))
 ```
 
 We can see here that the `Tuple` type is only a semigroup when its component parts are semigroups. This is a clever pattern: one (or both) of those component semigroups could be _another_ pair of other semigroups, and they could **nest** as deep as we need! You can also extend this idea to any fixed groups of elements:
 
 ```javascript
 const Tuple3 = daggy.tagged(
-  'a', 'b', 'c'
+  'Tuple3', ['a', 'b', 'c']
 )
 
 const Tuple4 = daggy.tagged(
-  'a', 'b', 'c', 'd'
+  'Tuple4', ['a', 'b', 'c', 'd']
 )
 
 // Tuple5, Tuple6, etc...
@@ -133,12 +133,12 @@ I'm pretty sure you can work out how the `Tuple`'s `concat` method can be rewrit
 I'm sure they're the three words you wanted to hear! Let's imagine you're building some system in which you store customer records that look like this:
 
 ```javascript
-const Customer = daggy.tagged(
+const Customer = daggy.tagged('Customer', [
   'name',             // String
   'favouriteThings',  // [String]
   'registrationDate', // Int -- since epoch
   'hasMadePurchase'   // Bool
-)
+])
 ```
 
 For whatever reason - I worked with [the NHS](http://www.nhs.uk/pages/home.aspx), and reasons were _bountiful_) - you might end up with duplicate records for the same person. In this instance, you'd want to write a `concat` function to make use of our shiny new `Semigroup` machinery:
@@ -236,7 +236,7 @@ After all, we've taken our problem, separated our concerns, and produced some ab
 
 We've seen that semigroups have our back any time we want to _merge_, _mooshmash_, or _combine_ (whatever word gives you the best **intuition**!) several data into one. We've also seen how flexible they can be - everything from `First` to `Pair` was a law-obiding `Semigroup` type.
 
-Yet, just as we'll see with all the other Fantasy Land magic, the interface is _exactly_ what we needed to create some really powerful functions. If you're not convinced, [here's a Gist of the above example](https://gist.github.com/i-am-tom/07d7ff6322fe80115db4a9c43c55c5af) to play with.
+Yet, just as we'll see with all the other Fantasy Land magic, the interface is _exactly_ what we needed to create some really powerful functions. If you're not convinced, [here's a Gist of the above example](https://gist.github.com/richdouglasevans/e89b1798820ada6480b6f439d5aca5f2) to play with.
 
 Next time, we'll look at a very common extension to the idea of semigroups. If you can't wait until then, I actually wrote [a blog post on monoids](/2016/11/03/monoid-est-tonoid/) a while back that should help you get a feel before next week.
 

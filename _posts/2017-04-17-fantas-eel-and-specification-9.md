@@ -86,7 +86,7 @@ Wizardry. **For our next trick**, let's notice that you can turn _any_ `Applicat
 // Note: we need a TypeRep to get empty!
 const MyApplicative = T => {
   // Whatever your instance is...
-  // const MyApp = daggy.tagged('x')
+  // const MyApp = daggy.tagged('MyApp', ['x'])
   // Put your map/ap/of here...
 
   // concat :: Semigroup a => MyApp a
@@ -147,7 +147,7 @@ We're really just constructing the simplest possible value within a type that ca
 
 ```javascript
 // Pair :: (l, r) -> Pair l r
-const Pair = daggy.tagged('x', 'y')
+const Pair = daggy.tagged('Pair', ['x', 'y'])
 
 // Map over the RIGHT side. The functor
 // is `Pair l` and `r` is the inner type.
@@ -178,7 +178,7 @@ How do we solve this? With the same _magical_ pattern that has been going on thr
 ```javascript
 // TypeRep!
 const Pair = T => {
-  Pair_ = daggy.tagged('x', 'y')
+  Pair_ = daggy.tagged('Pair', ['x', 'y'])
 
   // And now we're fine! Hooray!
   Pair_.of = x => Pair_(T.empty(), x)

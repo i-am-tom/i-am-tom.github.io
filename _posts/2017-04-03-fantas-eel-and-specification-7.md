@@ -31,7 +31,7 @@ const f = x => x.length
 ```javascript
 // type Predicate a = a -> Bool
 // The `a` is the *INPUT* to the function!
-const Predicate = daggy.tagged('f')
+const Predicate = daggy.tagged('Predicate', ['f'])
 
 // Make a Predicate that runs `f` to get
 // from `b` to `a`, then uses the original
@@ -75,7 +75,7 @@ A _lot_ - probably the overwhelming majority - of `Contravariant` examples in th
 
 ```javascript
 // type ToString a :: a -> String
-const ToString = daggy.tagged('f')
+const ToString = daggy.tagged('ToString', ['f'])
 
 // Add a pre-processor to the pipeline.
 ToString.prototype.contramap =
@@ -126,7 +126,7 @@ Another good example that's worth a look is the `Equivalence` type:
 ```javascript
 // type Equivalence a = a -> a -> Bool
 // `a` is the type of *BOTH INPUTS*!
-const Equivalence = daggy.tagged('f')
+const Equivalence = daggy.tagged('Equivalence', ['f'])
 
 // Add a pre-processor for the variables.
 Equivalence.prototype.contramap =

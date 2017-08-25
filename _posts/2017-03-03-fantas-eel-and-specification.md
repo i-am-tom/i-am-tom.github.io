@@ -8,18 +8,18 @@ Hello again, the Internet! As a functional programming zealot* and JavaScript de
 
 Daggy is a _tiny_ library for creating **sum types** for functional programs. Don't worry about what that means too much for now, and focus on the two functions that the library exports: `tagged` and `taggedSum`.
 
-## `daggy.tagged(... fields)`
+## `daggy.tagged(typeName, fields)`
 
 This is a very simple method for creating types with one constructor. In other words, think of it as a way to store your very rigid (probably model) data:
 
 ```javascript
 //- A coordinate in 3D space.
 //+ Coord :: (Int, Int, Int) -> Coord
-const Coord = daggy.tagged('x', 'y', 'z')
+const Coord = daggy.tagged('Coord', ['x', 'y', 'z'])
 
 //- A line between two coordinates.
 //+ Line :: (Coord, Coord) -> Line
-const Line = daggy.tagged('from', 'to')
+const Line = daggy.tagged('Line', ['from', 'to'])
 ```
 
 The resulting structures are pretty intuitive:
@@ -47,12 +47,12 @@ const myLine = Line(
 
 This is nothing scary if you've used the JavaScript object system before: all the `tagged` function really does is give us a function to fill the given named properties on an object. **That's it**. A tiny little utility for creating constructors with named properties.
 
-## `daggy.taggedSum(constructors)`
+## `daggy.taggedSum(typeName, constructors)`
 
 Now for the interesting one. Think about the boolean type: it has two values, `True` and `False`. In order to represent a structure like `Bool`, we need to make a type with multiple constructors (what we call a **sum type**):
 
 ```javascript
-const Bool = daggy.taggedSum({
+const Bool = daggy.taggedSum('Bool', {
   True: [], False: []
 })
 ```
@@ -60,7 +60,7 @@ const Bool = daggy.taggedSum({
 We call the different forms of our type its **type constructors**: in this case, they're `True` and `False`, and neither has any arguments. How about we take our code from the `tagged` example and build up a more complicated type?
 
 ```javascript
-const Shape = daggy.taggedSum({
+const Shape = daggy.taggedSum('Shape', {
   // Square :: (Coord, Coord) -> Shape
   Square: ['topleft', 'bottomright'],
 
@@ -89,12 +89,12 @@ Shape.prototype.translate =
     })
   }
 
-Square(Coord(2, 2, 0), Coord(3, 3, 0))
-.translate(3, 3, 3)
+Shape.Square(Coord(2, 2, 0), Coord(3, 3, 0))
+    .translate(3, 3, 3)
 // Square(Coord(5, 5, 3), Coord(6, 6, 3))
 
-Circle(Coord(1, 2, 3), 8)
-.translate(6, 5, 4)
+Shape.Circle(Coord(1, 2, 3), 8)
+    .translate(6, 5, 4)
 // Circle(Coord(7, 7, 7), 8)
 ```
 
@@ -136,7 +136,7 @@ This is all there is to `taggedSum`: it lets us build **types with multiple cons
 As a final example of `taggedSum` (because I _hope_ `tagged` is nice and straightforward), here's a linked list and a couple of useful functions:
 
 ```javascript
-const List = daggy.taggedSum({
+const List = daggy.taggedSum('List', {
   Cons: ['head', 'tail'], Nil: []
 })
 
