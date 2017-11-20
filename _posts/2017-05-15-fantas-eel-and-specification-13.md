@@ -309,7 +309,7 @@ We've also seen that we can define `ap` in terms of `chain` in a way that will w
 ```javascript
 // Associativity.
 m.chain(f).chain(g)
-  === m.chain(x => x.chain(g))
+  === m.chain(x => f(x).chain(g))
 
 // Remember Semigroups?
 a.concat(b).concat(c)
