@@ -50,7 +50,7 @@ List.prototype.equals = function (that) {
       head.equals(that.head) // a
         && tail.equals(that.tail), // [a]
 
-    Nil: () => that instanceof List.Nil
+    Nil: () => that.is(List.Nil)
   })
 }
 ```
