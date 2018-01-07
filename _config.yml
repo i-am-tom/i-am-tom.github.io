@@ -2,12 +2,12 @@ baseurl:
 
 description: "This website chronicles my folly and ramblings, currently centred in <strong>London</strong>, where I'm living and working."
 
-gems:
+plugins:
   - jekyll-feed
 
 permalink: pretty
 
-tagline: "Even better than IE6"
+tagline: "The Undecidable Instance"
 
 title: "Tom Harding"
 
