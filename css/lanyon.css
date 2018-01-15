@@ -301,13 +301,20 @@ tbody tr:nth-child(odd) th { background-color: #F9F9F9 }
 
 .sidebar-item { padding: 1rem }
 .sidebar-item p:last-child { margin-bottom: 0 }
-
 .sidebar-item strong {
   color: rgba(255, 255, 255, .8);
   font-weight: bold;
 }
 
 .sidebar-nav { border-bottom: 1px solid rgba(255, 255, 255, .1) }
+
+.sidebar-nav-title {
+  color: rgba(255, 255, 255, .8);
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-top: 2rem;
+  padding: .5rem 1rem;
+}
 
 .sidebar-nav-item {
   display: block;
@@ -325,6 +332,11 @@ a.sidebar-nav-item:focus {
 
 @media (min-width: 48em) {
   .sidebar-item { padding: 1.5rem }
+
+  .sidebar-nav-title {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 
   .sidebar-nav-item {
     padding-left: 1.5rem;
@@ -390,7 +402,7 @@ a.sidebar-nav-item:focus {
           transform: translateX(14rem);
 }
 
-footer.sidebar-item { text-align: center }
+footer.sidebar-item { text-align: left; }
 
 /* -- Posts -- */
 
