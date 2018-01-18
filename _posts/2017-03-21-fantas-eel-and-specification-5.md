@@ -90,8 +90,11 @@ const parallelMap = f => xs => xs.map(x =>
 
 // Chunk, fold in parallel, fold the result.
 // In practice, this would probably be async.
-const foldP = M => xs => fold(M)(
-  parallelMap(fold(M))(chunk(xs)))
+const foldP = M => xs =>
+  parallelMap(fold(M))(chunk(xs))
+  .reduce(
+    (xs, ys) => xs.concat(ys),
+    M.empty())
 
 // With all that in place...
 
