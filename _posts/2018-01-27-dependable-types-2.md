@@ -199,18 +199,18 @@ as indexing our expressions by their **type**, we can also index them by the
 ```haskell
 data Expression
    : (ctx : Context)
-  -> ProgramType
+  -> (ptype : ProgramType)
   -> Type where
 
   Abstraction
      : (param : ProgramType)
-    -> (body  : Expr (param :: ctx) ptype)
-    -> Expr ctx (PFunction param ptype)
+    -> (body  : Expression (param :: ctx) ptype)
+    -> Expression ctx (PFunction param ptype)
 
   Application
-     : (func : Expr ctx (PFunction i o))
-    -> (arg  : Expr ctx i)
-    -> Expr ctx o
+     : (func : Expression ctx (PFunction i o))
+    -> (arg  : Expression ctx i)
+    -> Expression ctx o
 
   Variable -- One more minute...
 ```
@@ -243,7 +243,7 @@ _carrying_ the context in the type so we can use it for `Abstraction` and
 ```haskell
 Variable
    : (ref : Elem ptype ctx)
-  -> Expr ctx ptype
+  -> Expression ctx ptype
 ```
 
 This, for me, is the most **beautiful** part of all. Now, instead of taking a
