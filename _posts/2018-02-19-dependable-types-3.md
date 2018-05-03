@@ -354,8 +354,8 @@ However, we already have a proof that this can't be the case, so this is...
 `absurd`! The proof is `Refl` (we can think of this as "obvious" for now),
 given the proof that `Not (l = r)`.
 
-> I won't go into too much detail, but `absurd` is a function from **anything**
-> to `Void`. In other words, _there's no way this can happen!_
+> I won't go into too much detail, but `absurd` is a function from `Void` to
+> **anything**. In other words, _there's no way this can happen!_
 
 ```haskell
 independentRefs Here (There later) prf

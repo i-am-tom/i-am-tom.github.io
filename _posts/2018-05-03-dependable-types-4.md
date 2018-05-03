@@ -88,7 +88,7 @@ get (There later) (_ :: tail)
   = get later tail
 ```
 
-By now, this should feel pretty comfortable: if the value is `Here`, we get the
+By now, this should feel pretty familiar: if the value is `Here`, we get the
 head, and if the value is `There`, we continue to walk the list. Because the
 `Elem` points to an element of `context`, and our `HVect` is the same length as
 `context`, we can be certain that this isn't going to cause us runtime issues,
@@ -153,7 +153,7 @@ Apply2 {a}
           (Variable Here)))
 ```
 
-Of course, with explicit constructor names, everything looks a little bit ugly,
+Naturally, with explicit constructor names, everything looks a little bit ugly,
 but we can think of `Apply2` as `\f x -> f x`, or, if you're more comfortable
 with the Lambda notation, `λf.λx.fx`.
 
