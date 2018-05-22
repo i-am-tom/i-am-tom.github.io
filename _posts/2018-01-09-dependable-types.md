@@ -126,7 +126,7 @@ form of De Bruijn indices will make it much easier for us to **guarantee
 correctness**.  It's all _very_ exciting. If you want a little exercise to try
 out, see if you can encode the following with De Bruijn indices:
 
-> `λf.λg.λx.f(gx)(gx)`
+> `λf.λg.λx.λy.f(gx)(gy)`
 
 It's a bit of a tricky one, but hopefully manageable. If you're curious, this
 function is called [`on` in Haskell's
