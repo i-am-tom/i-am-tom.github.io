@@ -210,7 +210,7 @@ _Who cares_? The important thing is that **it's a semigroup**, and, if we have a
 //       => { to   :: a -> m
 //          , from :: m -> a }
 //       -> a -> a -> a
-const merge = strategy => x => y =>
+const merge = strategy => (x, y) =>
   strategy.from(
     strategy.to(x)
       .concat(strategy.to(y))

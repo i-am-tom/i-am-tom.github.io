@@ -26,7 +26,7 @@ coOf :: a <- m a
 coChain :: m a <- (a <- m b) <- m b
 
 -- Or, more familiarly...
--- For any COmonad `w`:
+-- For any Comonad `w`:
 coOf :: w a -> a
 coChain :: w a -> (w a -> b) -> w b
 ```
@@ -94,7 +94,7 @@ Store.prototype.seek = function (p) {
 }
 
 //- Have a look at a particular cell.
-//+ peek :: Store p s ~> s
+//+ peek :: Store p s ~> p -> s
 Store.prototype.peek = function (p) {
   return this.lookup(p)
 }

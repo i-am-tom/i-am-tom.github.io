@@ -109,7 +109,7 @@ MCompose.empty = () =>
 // Or just `MCompose(M.of)`!
 ```
 
-> Note that, as with lots of interesting `Monoid` types, we'd need a `TypeRep` to build `MCompose` to know which `M` type we're using. This is written out in THE CODE GIST FIXME
+> Note that, as with lots of interesting `Monoid` types, we'd need a `TypeRep` to build `MCompose` to know which `M` type we're using.
 
 To make `MCompose` a full `Monoid`, we need our `M` type to have an `of` method _and_ be `Chain`able. `Chain` for the `Semigroup`, plus `Applicative` for the `Monoid`.
 
