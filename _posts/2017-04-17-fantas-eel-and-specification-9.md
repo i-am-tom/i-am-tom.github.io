@@ -43,8 +43,8 @@ const append = y => xs => xs.concat([y])
 
 // There's that sneaky lift2 again!
 // lift2 :: Applicative f
-//       => (  a,     b,     c)
-//       ->  f a -> f b -> f c
+//       => (a -> b -> c, f a, f b)
+//       -> f c
 const lift2 = (f, a, b) => b.ap(a.map(f))
 
 // insideOut :: Applicative f

@@ -34,7 +34,7 @@ So, **what is it**? Well... it's like a **semigroup for functors**. It's a way o
 Maybe.prototype.alt = function (that) {
   this.cata({
     Just: _ => this,
-    Nothing: that
+    Nothing: _ => that
   })
 }
 ```

@@ -174,6 +174,8 @@ const Compose = (F, G) => {
           .ap(fs.stack)
     )
   }
+
+  return Compose_
 }
 ```
 
