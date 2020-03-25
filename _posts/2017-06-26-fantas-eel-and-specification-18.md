@@ -108,7 +108,7 @@ Now, `Function` is a _slightly_ different story. Effectively, we can `contramap`
 ```haskell
 promap :: Profunctor p
        => p b c
-       ~> (b -> a, c -> d)
+       ~> (a -> b, c -> d)
        -> p a d
 ```
 
