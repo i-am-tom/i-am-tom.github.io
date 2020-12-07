@@ -191,7 +191,7 @@ const rl =
 
 //+ prompt :: Promise String
 const prompt = new Promise(
-  res => question('>', res))
+  res => rl.question('>', res))
 
 //- We use "Unit" to mean "undefined".
 //+ speak :: String -> Promise Unit
