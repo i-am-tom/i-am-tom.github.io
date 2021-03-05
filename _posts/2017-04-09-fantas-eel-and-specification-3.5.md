@@ -44,7 +44,7 @@ _That_ is how, using `equals` and one of those four functions, we have enough to
 
 ```javascript
 // Recursive Ord definition for List!
-// lte :: Ord a => [a] ~> [a] -> [a]
+// lte :: Ord a => [a] ~> [a] -> Boolean
 List.prototype.lte = function (that) {
   return this.cata({
     Cons: (head, tail) => that.cata({
