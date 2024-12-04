@@ -1,0 +1,60 @@
+title: Tom Harding
+description: My personal blog.
+
+email: i.am.tom.harding@gmail.com
+github_username: i-am-tom
+
+baseurl: ""
+url: "https://beef.cat"
+
+plugins:
+  - jekyll-feed
+  - jekyll-gist
+  - jekyll-redirect-from
+
+whitelist:
+  - jekyll-redirect-from
+
+defaults:
+  - scope:
+      path: 'en/_posts'
+      type: 'posts'
+    values:
+      language: en
+      layout: article
+      permalink: 'en/:year/:month/:day/:title'
+
+  - scope:
+      path: 'en'
+      type: 'pages'
+    values:
+      language: en
+
+  - scope:
+      path: 'es/_posts'
+      type: 'posts'
+    values:
+      language: es
+      layout: article
+      permalink: 'es/:year/:month/:day/:title'
+
+  - scope:
+      path: 'es'
+      type: 'pages'
+    values:
+      language: es
+
+  - scope:
+      path: 'ca/_posts'
+      type: 'posts'
+    values:
+      language: ca
+      layout: article
+      permalink: 'ca/:year/:month/:day/:title'
+
+  - scope:
+      path: 'ca'
+      type: 'pages'
+    values:
+      language: ca
+

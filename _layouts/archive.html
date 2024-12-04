@@ -1,0 +1,19 @@
+---
+layout: base
+---
+<h1>{{ page.title }}</h1>
+{% assign filtered_posts = site.posts | where: 'language', page.language %}
+
+<ul class="homepage-posts">
+  {% for post in filtered_posts %}
+    {% unless post.tags contains "untranslated" %}
+      <li class="homepage-post">
+        <a class="homepage-article-link" href="{{ post.url }}">
+          {{ post.title }}
+        </a>
+      </li>
+    {% endunless %}
+  {% endfor %}
+</ul>
+
+{{ content }}

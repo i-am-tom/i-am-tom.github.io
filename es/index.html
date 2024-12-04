@@ -1,0 +1,65 @@
+---
+layout: base
+title: Hola
+---
+
+<h1>
+  Hola, Internet
+  <small>Me llamo Tom</small>
+</h1>
+
+<p class="homepage-intro">
+  Soy un orador, mentor, y programador que ha picado
+  <a href="https://github.com/i-am-tom">demasiado código</a> en su vida. Ésta
+  página trata de aquellos fragmentos de código que nunca deberían haberse
+  escrito.
+</p>
+
+<h2>Últimos articulos</h2>
+{% assign filtered_posts = site.posts | where: 'language', page.language %}
+
+<ul class="homepage-posts">
+  {% for post in filtered_posts limit: 10 %}
+    <li class="homepage-post">
+      <a class="homepage-article-link" href="{{ post.url }}">
+        {{ post.title }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
+También puedes <a href="/{{ page.language }}/archive">acceder al
+  repositorio</a> completo.
+
+<h2>¿Beef?</h2>
+
+<p>
+  Beef es el nombre de mi gato, y él es un michi muy bueno. Casualmente, yo
+  vivo en Catalunya, cuyo dominio de nivel superior (TLD) oficial es "cat".
+  Ni hecho a medida, no tuve más remedio que comprarlo.
+</p>
+
+<h2>Agradecimientos</h2>
+
+Este sitio web está disponible en inglés, castellano, y catalán. Ya que aún no
+domino con fluidez dos de estos tres idiomas, su disponibilidad se debe gracias
+a dos amigos increíbles:
+
+<ul>
+  <li>
+    David es un neurocientífico polígloto y francamente demasiado inteligente
+    como para estar corrigiendo mi castellano (que conste en acta su desacuerdo
+    con esta aseveración).
+  </li>
+  <li>
+    <a href="https://pinksamurai.itch.io/">Uri</a> es un desarrollador de los
+    videojuegos y un autor publicado, que también es demasiado inteligente
+    para estar traduciendo estos artículos al catalán.
+  </li>
+</ul>
+
+Espero que, a medida que mis habilidades lingüísticas mejoren, mis amigos
+tengan que esforzarse cada vez menos, hasta que pueda traducirlo todo yo solo.
+Hasta entonces, si quieres saber todo por lo que han pasado, encontrarás mis
+intentos de traducción junto a las versiones publicadas en
+<a href="https://github.com/i-am-tom/i-am-tom.github.io">el repositorio</a>.

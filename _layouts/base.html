@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="{{ page.language }}">
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Staatliches&display=swap" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
+    <link rel="stylesheet" href="{{ "/assets/style.css" | relative_url }}" />
+    <script src="{{ "/assets/script.js" | relative_url }}"></script>
+    <title>{{ page.title }} - Tom Harding</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-container">
+        <header class="header">
+          {% capture home %}/{{ page.language }}/{% endcapture %}
+          <a class="header-home" href="/{{ page.language }}">
+            {% if page.url != home %}
+              🏠
+
+              <span class="visually-hidden">
+                {{ site.data.text.return_home[page.language] }}
+              </span>
+            {% endif %}
+          </a>
+          {% if page.url != '/404.html' %}
+            <ul class="header-language-selection">
+              {% for language in site.data.languages %}
+                {% assign target = page.url | replace_first: page.language, language.code %}
+
+                {% assign pages = site.pages | where: "url", target %}
+                {% assign posts = site.posts | where: "url", target %}
+
+                {% if language.code == page.language %}
+                  <li class="header-language-option {{ language.code }} active">
+                    <span class="header-language-option-text">
+                      {{ language.code }}
+                    </span>
+                  </li>
+                {% elsif pages.size > 0 or posts.size > 0 %}
+                  <li class="header-language-option {{ language.code }}">
+                    <a href="{{ target }}" class="header-language-option-text">
+                      {{ language.code }}
+                    </a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </header>
+      </div>
+      <main class="main-content">
+        {{ content }}
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,252 @@
+:root {
+  --light-coral: #F18C8E;
+  --melon: #F0B7A4;
+  --desert-sand: #F1D1B5;
+  --air-force-blue: #568EA6;
+  --paynes-gray: #305F72;
+
+  /* Light mode */
+  --body-background: #FFFFFF;
+  --highlight-background: var(--light-coral);
+  --border-colour: var(--air-force-blue);
+  --title-colour: var(--light-coral);
+  --body-colour: var(--paynes-gray);
+  --subtitle-colour: var(--melon);
+  --home-link: var(--air-force-blue);
+  --link-colour: var(--air-force-blue);
+  --language-choice: var(--air-force-blue);
+  --language-chosen: var(--paynes-gray);
+
+  --code-comment: var(--light-coral);
+  --code-normal: var(--paynes-gray);
+  --code-operator: var(--melon);
+
+  --spiral-one: var(--paynes-gray);
+  --spiral-two: var(--air-force-blue);
+  --spiral-three: var(--desert-sand);
+  --spiral-four: var(--melon);
+  --spiral-five: var(--light-coral);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --lapiz-lazuli: #2F6690;
+    --light-coral: #F18C8E;
+    --platinum: #D9DCD6;
+    --indigo-dye: #16425B;
+    --sky-blue: #A1D3E2;
+
+    --body-background: var(--indigo-dye);
+    --highlight-background: var(--lapiz-lazuli);
+    --border-colour: var(--air-force-blue);
+    --title-colour: var(--platinum);
+    --subtitle-colour: var(--light-coral);
+    --body-colour: var(--sky-blue);
+    --link-colour: var(--platinum);
+    --home-link: var(--platinum);
+    --language-choice: var(--sky-blue);
+    --language-chosen: var(--platinum);
+
+    --code-comment: var(--light-coral);
+    --code-normal: var(--platinum);
+    --code-operator: var(--platinum);
+
+    --spiral-one: var(--lapiz-lazuli);
+    --spiral-two: var(--light-coral);
+    --spiral-three: var(--platinum);
+    --spiral-four: var(--indigo-dye);
+    --spiral-five: var(--sky-blue);
+  }
+}
+
+body {
+  background: repeating-linear-gradient(135deg,
+    var(--spiral-one), var(--spiral-one) 180px,
+    var(--spiral-two) 180px, var(--spiral-two) 360px,
+    var(--spiral-three) 360px, var(--spiral-three) 540px,
+    var(--spiral-four) 540px, var(--spiral-four) 720px,
+    var(--spiral-five) 720px, var(--spiral-five) 900px);
+  color: var(--body-colour);
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 28px;
+  margin: 0;
+  text-align: justify;
+}
+
+.container {
+  align-items: center;
+  background-color: var(--body-background);
+  background-image: url('/assets/images/noise.png');
+  box-sizing: border-box;
+  box-shadow: 0 -10px 10px rgba(1, 1, 1, 0.5);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 30px;
+}
+
+h1 {
+  color: var(--title-colour);
+  font-family: 'Staatliches', sans-serif;
+  font-size: 72px;
+  font-weight: normal;
+  letter-spacing: 0;
+  line-height: 72px;
+  margin-top: 0;
+  text-align: center;
+
+  small {
+    color: var(--subtitle-colour);
+    display: block;
+    font-size: 32px;
+    line-height: 32px;
+  }
+}
+
+h2 {
+  color: var(--subtitle-colour);
+  font-family: 'Staatliches', sans-serif;
+  font-size: 32px;
+  font-weight: normal;
+  letter-spacing: 0;
+  margin: 32px 0 20px;
+}
+
+a {
+  color: var(--link-colour);
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover { text-decoration: underline }
+}
+
+code {
+  font-family: 'Fragment Mono', monospace;
+}
+
+pre {
+  color: var(--code-normal);
+  font-family: 'Fragment Mono', monospace;
+  overflow-x: scroll;
+  padding: 10px;
+
+  code { font-size: 75% }
+}
+
+li {
+  margin-bottom: 10px;
+  &:last-child { margin-bottom: 0 }
+}
+
+/* Header */
+
+.header-container {
+  justify-content: center;
+  display: flex;
+  width: 100%;
+}
+
+.header {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  max-width: 900px;
+  padding: 20px;
+  width: 100%;
+}
+
+.header-home {
+  color: var(--home-link);
+  display: block;
+  height: 30px;
+  opacity: 0.4;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+
+  &:hover, &:focus, &.active {
+    opacity: 1;
+  }
+
+  svg {
+    height: 30px;
+  }
+}
+
+.header-language-selection {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+}
+
+.header-language-option {
+  color: var(--language-choice);
+  display: block;
+  margin-left: 10px;
+  text-transform: uppercase;
+
+  a {
+    color: inherit;
+    opacity: 0.5;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    font-weight: 300;
+
+    &:hover { opacity: 1 }
+  }
+
+  &.active {
+    color: var(--language-chosen);
+    font-weight: bold;
+  }
+}
+
+/* Main content */
+
+.main-content {
+  box-sizing: border-box;
+  max-width: 800px;
+  padding: 20px;
+  width: 100%;
+}
+
+.footnotes {
+  border-top: 1px solid var(--border-colour);
+}
+
+@media only screen and (min-width: 900px) {
+  h1 { font-size: 64px }
+  h2 { font-size: 40px }
+
+  body {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .container {
+    margin-left: 30px;
+  }
+}
+
+/* Code */
+
+.kt { font-weight: bold }
+.c1, .cp { color: var(--code-comment) }
+.o { color: var(--code-operator) }
+
+/* Helpers */
+
+// https://a11y-guidelines.orange.com/en/articles/accessible-hiding/
+.visually-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0,0,0,0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}

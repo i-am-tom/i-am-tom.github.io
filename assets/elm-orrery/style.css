@@ -1,0 +1,15 @@
+svg {
+  display: block;
+  margin: 0px auto;
+  max-width: 100%;
+}
+
+ellipse {
+  stroke: var(--paynes-gray);
+  stroke-dasharray: 2;
+  fill: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  ellipse { stroke: var(--platinum); }
+}

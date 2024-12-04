@@ -1,0 +1,64 @@
+---
+layout: base
+title: Hola
+---
+
+<h1>
+  Hola, Internet
+  <small>Em dic Tom</small>
+</h1>
+
+<p class="homepage-intro">
+  Sóc orador i programador (un que ha escrit
+  <a href="https://github.com/i-am-tom">massa codi</a>). Aquesta pàgina és
+  sobre aquells bocins de codi que mai han sigut escrits.
+</p>
+
+<h2>Últimes publicacions</h2>
+{% assign filtered_posts = site.posts | where: 'language', page.language %}
+
+<ul class="homepage-posts">
+  {% for post in filtered_posts limit: 10 %}
+    <li class="homepage-post">
+      <a class="homepage-article-link" href="{{ post.url }}">
+        {{ post.title }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
+També pots <a href="/{{ page.language }}/archive">veure totes les
+publicacions</a>.
+
+<h2>¿Beef?</h2>
+
+<p>
+  En Beef és el meu gat i és molt bon noi. Visc a Catalunya, on el domini de
+  les pàgines web acaba en cat, detall que em sembla una casualitat ben
+  bonica.
+</p>
+
+<h2>Mencions especials</h2>
+
+Aquesta pàgina està disponible en Anglès, Castellà i Català. Dos d’aquests
+idiomes no els parlo particularment bé encara, de manera que la seves versions
+estan disponibles gràcies a l’ajuda d’uns amics molt macos:
+
+<ul>
+  <li>
+    En David és un políglota neuro-científic massa intel•ligent per estar
+    corregint el meu Castellà.
+  </li>
+  <li>
+    <a href="https://pinksamurai.itch.io/">L'Uri</a> és un desenvolupador de
+    videojocs i autor publicat que és també massa intel•ligent per estar
+    corregint els meus textos al català.
+  </li>
+</ul>
+
+L’objectiu és que, mentre milloro, aquesta pàgina es converteixi en una feina
+d’una sola persona. Fins llavors, si vols veure com de maques i pacients poden
+ser dues persones, trobaràs els meus intents de traduir aquestes pàgines junt
+amb les seves versions publicades
+<a href="https://github.com/i-am-tom/i-am-tom.github.io"> al repositori de la
+pàgina web</a>.

@@ -1,0 +1,9 @@
+---
+permalink: /404.html
+layout: article
+title: 404
+---
+
+Aquesta pàgina no existeix!
+
+[Feu clic aquí per tornar a pàgina principal](/)

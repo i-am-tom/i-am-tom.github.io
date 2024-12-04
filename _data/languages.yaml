@@ -1,0 +1,8 @@
+- name: Català
+  code: ca
+
+- name: English
+  code: en
+
+- name: Castellano
+  code: es

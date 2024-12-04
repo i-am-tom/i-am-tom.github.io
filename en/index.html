@@ -1,0 +1,64 @@
+---
+layout: base
+redirect_from: /
+title: Hello
+---
+
+<h1>
+  Hello, the Internet
+  <small>My name is Tom</small>
+</h1>
+
+<section class="homepage-intro">
+  I'm a speaker, mentor, and programmer who has written
+  <a href="https://github.com/i-am-tom">far too much code</a>. This website is
+  about the bits of code that should never have been written.
+</section>
+
+<h2>Latest posts</h2>
+{% assign filtered_posts = site.posts | where: 'language', page.language %}
+
+<ul class="homepage-posts">
+  {% for post in filtered_posts limit: 10 %}
+    {% unless post.tags contains "untranslated" %}
+      <li class="homepage-post">
+        <a class="homepage-article-link" href="{{ post.url }}">
+          {{ post.title }}
+        </a>
+      </li>
+    {% endunless %}
+  {% endfor %}
+</ul>
+
+You can also <a href="/{{ page.language }}/archive">view the full archive</a>.
+
+<h2>Beef?</h2>
+
+<p>
+  Beef is the name of my cat, and he's an extremely good boy. I also happen to
+  live in Catalunya, whose official top-level domain is cat. A match made in
+  heaven.
+</p>
+
+<h2>Special thanks</h2>
+
+This website is available in English, Spanish, and Catalan. Two of these are
+not languages I speak particularly well yet, so their availability is thanks to
+some wonderful friends:
+
+<ul>
+  <li>
+    David is a polyglot neuroscientist who is frankly far too clever to be
+    fixing my Spanish.
+  </li>
+  <li>
+    <a href="https://pinksamurai.itch.io/">Uri</a> is a game developer and
+    published author who is also far too clever to be doing the Catalan
+    translations.
+  </li>
+</ul>
+
+The hope is that, as I improve, this becomes more of a solo operation. Until
+then, if you want an idea of how wonderful and patient these two are, you'll
+find my attempts at translating these posts alongside the published versions in
+<a href="https://github.com/i-am-tom/i-am-tom.github.io">the website repo</a>.
