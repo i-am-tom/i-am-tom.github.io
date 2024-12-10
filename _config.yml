@@ -20,6 +20,7 @@ defaults:
       path: 'en/_posts'
       type: 'posts'
     values:
+      category: en
       language: en
       layout: article
       permalink: 'en/:year/:month/:day/:title'
@@ -28,12 +29,14 @@ defaults:
       path: 'en'
       type: 'pages'
     values:
+      category: en
       language: en
 
   - scope:
       path: 'es/_posts'
       type: 'posts'
     values:
+      category: es
       language: es
       layout: article
       permalink: 'es/:year/:month/:day/:title'
@@ -42,12 +45,14 @@ defaults:
       path: 'es'
       type: 'pages'
     values:
+      category: es
       language: es
 
   - scope:
       path: 'ca/_posts'
       type: 'posts'
     values:
+      category: ca
       language: ca
       layout: article
       permalink: 'ca/:year/:month/:day/:title'
@@ -56,5 +61,11 @@ defaults:
       path: 'ca'
       type: 'pages'
     values:
+      category: ca
       language: ca
 
+feed:
+  categories:
+    - ca
+    - en
+    - es

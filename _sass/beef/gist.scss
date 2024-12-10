@@ -1,0 +1,28 @@
+pre {
+  background: rgba(0, 0, 0, 0.05);
+  border-left: 10px solid var(--melon);
+  box-sizing: border-box;
+  opacity: 0.8;
+
+  code {
+    color: var(--sky-blue);
+
+    .c1 { color: var(--light-coral) }
+    .kt { font-weight: bold }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  pre {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 10px solid var(--light-coral);
+    box-sizing: border-box;
+
+    code {
+      color: var(--platinum);
+
+      .c1 { color: var(--melon) }
+      .kt { font-weight: bold }
+    }
+  }
+}

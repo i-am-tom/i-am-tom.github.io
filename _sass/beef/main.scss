@@ -17,10 +17,6 @@
   --language-choice: var(--air-force-blue);
   --language-chosen: var(--paynes-gray);
 
-  --code-comment: var(--light-coral);
-  --code-normal: var(--paynes-gray);
-  --code-operator: var(--melon);
-
   --spiral-one: var(--paynes-gray);
   --spiral-two: var(--air-force-blue);
   --spiral-three: var(--desert-sand);
@@ -47,10 +43,6 @@
     --language-choice: var(--sky-blue);
     --language-chosen: var(--platinum);
 
-    --code-comment: var(--light-coral);
-    --code-normal: var(--platinum);
-    --code-operator: var(--platinum);
-
     --spiral-one: var(--lapiz-lazuli);
     --spiral-two: var(--light-coral);
     --spiral-three: var(--platinum);
@@ -58,6 +50,8 @@
     --spiral-five: var(--sky-blue);
   }
 }
+
+@import "beef/gist";
 
 body {
   background: repeating-linear-gradient(135deg,
@@ -130,7 +124,8 @@ pre {
   color: var(--code-normal);
   font-family: 'Fragment Mono', monospace;
   overflow-x: scroll;
-  padding: 10px;
+  line-height: 100%;
+  padding: 15px 20px;
 
   code { font-size: 75% }
 }
@@ -229,12 +224,6 @@ li {
     margin-left: 30px;
   }
 }
-
-/* Code */
-
-.kt { font-weight: bold }
-.c1, .cp { color: var(--code-comment) }
-.o { color: var(--code-operator) }
 
 /* Helpers */
 

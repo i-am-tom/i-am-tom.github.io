@@ -47,7 +47,15 @@ trabajado con proyectos front-end, quizás ya conoces La Arquitectura de Elm
 (_TEA: The Elm Architecture_). En términos simples, describe una aplicación
 así:
 
-{% gist c05f206ef35179f5ad7e13006ba6228d TEA.hs %}
+```haskell
+type TEA :: Type -> Type -> Type -> Type
+data TEA state event output
+  = TEA
+      { initial :: state
+      , render  :: state -> output
+      , update  :: event -> state -> state
+      }
+```
 
 Empezamos con un estado inicial. Cuando un evento viene al sistema (un clic del
 ratón, un desplazamiento de página, o cualquier otra cosa), ejecutamos la
@@ -82,14 +90,33 @@ de tics que ha pasado mientras estábamos fuera. En la biblioteca
 `monoid-extras` se encuentra la clase `Action`, que (después de unos cambios) a
 mi me parece que sería útil:
 
-{% gist c05f206ef35179f5ad7e13006ba6228d Action.hs %}
+```haskell
+type Action :: Type -> Type -> Constraint
+class Monoid change => Action change state where
+  -- act (m <> n) === act m . act n
+  -- act  mempty  === id
+  act :: change -> state -> state
+
+-- repeat 3 m s == act (m <> m <> m) s
+repeat :: Action c s => Natural -> c -> s -> s
+repeat count m state = act (stimes count m) state
+```
 
 Aquí, describimos cambios del estado con un tipo monoidal, que nos proporciona
 la capacidad de usar la función `stimes` para repetir una acción muchas veces
 después de estar inactivo, o una vez por tic mientras estamos jugando. Con esta
 clase, podemos volver a nuestra arquitectura original:
 
-{% gist c05f206ef35179f5ad7e13006ba6228d Incremental.hs %}
+```haskell
+type Incremental :: Type -> Type -> Type -> Type -> Type
+data Incremental change state event output
+  = Incremental
+      { initial :: state
+      , render  :: state -> output
+      , update  :: event -> state -> state
+      , tick    :: state -> change
+      }
+```
 
 En este punto, hay un componente de la especificación original que me gustaría
 revisar: la vista que muestra a los usuarios las tasas del cambio de sus
@@ -114,7 +141,17 @@ papel presenta una manera de calcular derivadas de expresiones del cálculo
 lambda simplemente tipado con una clase que los autores llaman _estructura de
 cambio_ (change structure). La podemos definir como una subclase de `Action`:
 
-{% gist c05f206ef35179f5ad7e13006ba6228d Change.hs %}
+```haskell
+type Change :: Type -> Type
+class Action (Delta x) x => Change x where
+  type Delta x :: Type
+
+  -- update x (difference y x) === y
+  update :: x -> Delta x -> x
+  difference :: x -> x -> Delta x
+
+  update = act
+```
 
 Con esta clase, podemos actuar sobre un valor con un cambio para crear un valor
 nuevo, y podemos calcular el cambio que describe la diferencia entre los dos.
@@ -122,7 +159,22 @@ Además, cada tipo de valor tiene asociado un tipo de cambio específico. Un
 ejemplo simple es `Int`, cuyos cambios pueden ser descritos por (una versión
 monoidal de) su propio tipo.
 
-{% gist c05f206ef35179f5ad7e13006ba6228d Change_Int.hs %}
+```haskell
+instance Change Int where
+  type Delta Int = Sum Int
+
+  -- update x (difference y x)
+  --   === x + getSum (difference y x)
+  --   === x + getSum (Sum (y - x))
+  --   === x + y - x
+  --   === y
+
+  update :: Int -> Sum Int -> Int
+  update x y = x + getSum y
+
+  difference :: Int -> Int -> Sum Int
+  difference x y = Sum (x - y)
+```
 
 En general, me ha parecido muy útil conceptualizar esas operaciones como _más_
 y _menos_. Para algunos tipos, puede ser útil definir algo más específico al
@@ -136,7 +188,14 @@ una implementación para cualquier tipo `Generic`. En este caso, solamente
 tenemos que manejar seis instancias: `M1`, `V1`, `(:+:)`, `U1`, `(:*:)`, y
 `K1`.
 
-{% gist c05f206ef35179f5ad7e13006ba6228d GChange.hs %}
+```haskell
+type GChange :: (Type -> Type) -> Type
+class (forall x. Monoid (GDelta rep x)) => GChange rep where
+  type GDelta rep :: Type -> Type
+
+  gupdate :: rep v -> GDelta rep v -> rep v
+  gdifference :: rep v -> rep v -> GDelta rep v
+```
 
 Vamos a empezar con `V1` y `U1`. `V1` representa un tipo sin constructores: un
 tipo que es isomorfo a `Void`. Como estos tipos no tienen habitantes (valores
@@ -146,7 +205,25 @@ _unitario_. A pesar de tener un habitante más que `V1` (es decir, un único
 valor), `U1` comparte su estructura de cambio: ya tengamos cero valores o uno
 solo, un "cambio" entre ellos no cambia nada.
 
-{% gist c05f206ef35179f5ad7e13006ba6228d GChangeV1U1.hs %}
+```haskell
+instance GChange V1 where
+  type GDelta V1 = Const ()
+
+  gupdate :: V1 v -> Const () v -> V1 v
+  gupdate = \case
+
+  gdifference :: V1 v -> V1 v -> Const () v
+  gdifference = \case
+
+instance GChange U1 where
+  type GDelta U1 = Const ()
+
+  gupdate :: U1 v -> Const () v -> U1 v
+  gupdate U1 () = U1
+
+  gdifference :: U1 v -> U1 v -> Const () v
+  gdifference U1 U1 = ()
+```
 
 Por otra parte, ni `M1` ni `K1` son tan emocionantes: cuando encontramos
 metadatos de la forma de `M1`, podemos ignorarlos, porque no va a influir el
@@ -154,19 +231,75 @@ tipo de cambio. Cuando encontramos un `K1`, hemos encontrado un argumento
 dentro de nuestro tipo, y entonces tenemos que asegurar que es un tipo de
 `Change` para que podamos seguir.
 
-{% gist c05f206ef35179f5ad7e13006ba6228d GChangeK1M1.hs %}
+```haskell
+instance GChange x => GChange (M1 t m x) where
+  type GDelta (M1 t m x) = GDelta x
+
+  gupdate :: M1 t m x v -> GDelta x v -> M1 t m x v
+  gupdate (M1 x) delta = M1 (gupdate x delta)
+
+  gdifference :: M1 t m x v -> M1 t m x v -> GDelta x v
+  gdifference (M1 x) (M1 y) = gdifference x y
+
+instance Change x => GChange (K1 R x) where
+  type GDelta (K1 R x) = Delta x
+
+  gupdate :: K1 R x v -> Delta x v -> K1 R x v
+  gupdate (K1 x) delta = K1 (update x delta)
+
+  gdifference :: K1 R x v -> K1 R x v -> Delta x v
+  gdifference (K1 x) (K1 y) = difference x y
+```
 
 Los productos son simples: si queremos describir un cambio a un producto,
 tenemos que describir los cambios de los lados:
 
-{% gist c05f206ef35179f5ad7e13006ba6228d GChangeProduct.hs %}
+```haskell
+instance (GChange x, GChange y) => GChange (x :*: y) where
+  type GDelta (x :*: y) = GDelta x :*: GDelta y
+
+  gupdate :: (x :*: y) v -> (GDelta x :*: GDelta y) v -> (x :*: y) v
+  gupdate (x :*: y) (dx :*: dy) = gupdate x dx :*: gupdate y dy
+
+  gdifference :: (x :*: y) v -> (x :*: y) v -> (GDelta x :*: GDelta y) v
+  gdifference (x1 :*: y1) (x2 :*: y2)
+    = gdifference x1 x2 :*: gdifference y1 y2
+```
 
 Finalmente, tenemos el caso más complicado. Podríamos adivinar que un cambio de
 `x :+: y` es un cambio de `x` _o_ un cambio de `y`, pero estaríamos perdiendo
 algo: ¿Cómo se describe un cambio del lado? Por ejemplo, ¿Cómo se describe un
 cambio de `Left 1` a `Right True`? Más aún ¿Cómo lo hacemos un monoide?
 
-{% gist c05f206ef35179f5ad7e13006ba6228d GChangeSumES.hs %}
+```haskell
+type Choice :: (Type -> Type) -> (Type -> Type) -> (Type -> Type)
+data Choice x y v
+  = Stay ((GDelta x :+: GDelta y) v)
+  | Move ((x :+: y) v)
+  | NoOp
+
+instance (GChange x, GChange y) => Change (x :+: y) where
+  type GDelta (x :+: y) = Choice x y
+
+  gupdate :: (x :+: y) v -> Choice x y v -> (x :+: y) v
+  gupdate  this   NoOp        = this
+  gupdate  ____  (Move (L1 y)) = L1 y
+  gupdate  ____  (Move (R1 y)) = R1 y
+  gupdate (L1 x) (Stay (L1 d)) = L1 (update x d)
+  gupdate (R1 x) (Stay (R1 d)) = R1 (update x d)
+
+  -- Estos casos no deberían pasar. Los estados no coinciden: no podemos
+  -- quedarnos a la derecha si ya estamos a la izquierda. Por lo tanto, para
+  -- mantener la totalidad de la función, no hacemos nada.
+  update (L1 x) (Stay (R1 _)) = L1 x
+  update (R1 x) (Stay (L1 _)) = R1 x
+
+  difference :: (x :+: y) v -> (x :+: y) v -> Choice x y v
+  difference (L1 x) (L1 y) = Stay (L1 (difference x y))
+  difference (R1 x) (R1 y) = Stay (R1 (difference x y))
+  difference (L1 x) (R1 _) = Move (L1 x)
+  difference (R1 x) (L1 _) = Move (R1 x)
+```
 
 Con esto, tenemos todas las instancias que necesitamos para derivar `Change`
 genéricamente para todos los TDAs cuyos argumentos son tipos de `Change`
@@ -176,14 +309,45 @@ Estos tipos pueden no ser muy agradables, pero podríamos mejorar la situación
 con poco esfuerzo: de manera similar a [`higgledy`][higgledy], podríamos
 aprovechar [`generic-lens`][generic-lens] para hacer la mayoría:
 
-{% gist c05f206ef35179f5ad7e13006ba6228d GenericDeltaES.hs %}
+```haskell
+type GenericDelta :: Type -> Type
+newtype GenericDelta x = GenericDelta (GDelta (Rep x) Void)
+-- Necesitará algún tipo de instancia Generic…
+
+instance Change (Generically x) where
+    type Delta x = GenericDelta x
+    ...
+
+type User :: Type
+data User
+  = User
+      { age   :: Int
+      , money :: Int
+      }
+  deriving Change
+    via (Generically User)
+
+example :: Delta User
+example _ = mempty
+    & field @"money" *~ 1.1 -- aplicar intereses
+    & field @"age" +~ 1
+```
 
 En lugar de hacer más largo este artículo, te dejaré que rellenes los huecos y
 diseñes una interfaz para trabajar con tipos de suma.
 
 ## Volvemos a nuestra arquitectura
 
-{% gist c05f206ef35179f5ad7e13006ba6228d Final.hs %}
+```haskell
+type Final :: Type -> Type -> Type -> Type
+data Final state event output
+  = Final
+      { initial :: state
+      , render  :: state -> Delta state -> output
+      , update  :: event -> state -> state
+      , tick    :: state -> Delta state
+      }
+```
 
 No ha cambiado mucho, excepto que ahora `Delta state` reemplaza `change` y
 necesitamos una variable de tipo menos. Sin embargo, recuerda que no tenemos
@@ -199,7 +363,24 @@ entera (porque `Delta x` también implicaría que `r -> Delta x` es un monoide).
 Ahora tenemos una arquitectura mucho más conveniente para construir videojuegos
 de una manera más ordenada y manejable.
 
-{% gist c05f206ef35179f5ad7e13006ba6228d State.hs %}
+```haskell
+type State :: Type
+data State = State { resource :: Double, money :: Double }
+
+tick :: State -> Delta State
+tick state = mconcat [ sellResources, payWages ]
+  where
+    sellResources :: Delta State
+    sellResources =
+        mempty
+            & field @"resource" .~ 0
+            & field @"money" +~ (resource state * cost)
+
+    payWages :: Delta State
+    payWages =
+        mempty
+            & field @"money" -~ 100
+```
 
 ## Conclusiones y trabajo adicional
 
@@ -219,7 +400,15 @@ hay más cosas que me gustaría hacer. Originalmente había planeado acercarme
 mucho más a los ideales de computación incremental, y diseñar una aplicación
 más de este estilo:
 
-{% gist c05f206ef35179f5ad7e13006ba6228d Future.hs %}
+```haskell
+type Future :: Type -> Type -> Type
+data Future state output
+  = Future
+      { initial  :: state
+      , render   :: state -> Delta state -> output
+      , simulate :: Natural -> state
+      }
+```
 
 En este mundo, los eventos son funciones `state -> Delta state`, y un tic es
 simplemente la derivada de `simulate`. Tal vez podría haber sido una idea

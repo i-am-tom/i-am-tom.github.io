@@ -2,14 +2,13 @@
 <html lang="{{ page.language }}">
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1" />
+    <link type="application/atom+xml" rel="alternate" href="/feed/{{ page.language }}.xml" title="{{ site.title }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Staatliches&display=swap" rel="stylesheet">
 
-    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
     <link rel="stylesheet" href="{{ "/assets/style.css" | relative_url }}" />
-    <script src="{{ "/assets/script.js" | relative_url }}"></script>
     <title>{{ page.title }} - Tom Harding</title>
   </head>
   <body>
