@@ -133,7 +133,7 @@ anomenen _estructura de canvi_. Podem veure aquesta classe com una subclasse
 d'`Action`:
 
 ```haskell
-type Change :: Type -> Type
+type Change :: Type -> Constraint
 class Action (Delta x) x => Change x where
   type Delta x :: Type
 
@@ -180,7 +180,7 @@ Fer-ho significa que només tenim sis casos a manejar: `M1`, `V1`, `(:+:)`,
 `U1`, `(:*:)` i `K1`.
 
 ```haskell
-type GChange :: (Type -> Type) -> Type
+type GChange :: (Type -> Type) -> Constraint
 class (forall x. Monoid (GDelta rep x)) => GChange rep where
   type GDelta rep :: Type -> Type
 

@@ -142,7 +142,7 @@ lambda simplemente tipado con una clase que los autores llaman _estructura de
 cambio_ (change structure). La podemos definir como una subclase de `Action`:
 
 ```haskell
-type Change :: Type -> Type
+type Change :: Type -> Constraint
 class Action (Delta x) x => Change x where
   type Delta x :: Type
 
@@ -189,7 +189,7 @@ tenemos que manejar seis instancias: `M1`, `V1`, `(:+:)`, `U1`, `(:*:)`, y
 `K1`.
 
 ```haskell
-type GChange :: (Type -> Type) -> Type
+type GChange :: (Type -> Type) -> Constraint
 class (forall x. Monoid (GDelta rep x)) => GChange rep where
   type GDelta rep :: Type -> Type
 
@@ -278,27 +278,27 @@ data Choice x y v
   | Move ((x :+: y) v)
   | NoOp
 
-instance (GChange x, GChange y) => Change (x :+: y) where
+instance (GChange x, GChange y) => GChange (x :+: y) where
   type GDelta (x :+: y) = Choice x y
 
   gupdate :: (x :+: y) v -> Choice x y v -> (x :+: y) v
   gupdate  this   NoOp        = this
   gupdate  ____  (Move (L1 y)) = L1 y
   gupdate  ____  (Move (R1 y)) = R1 y
-  gupdate (L1 x) (Stay (L1 d)) = L1 (update x d)
-  gupdate (R1 x) (Stay (R1 d)) = R1 (update x d)
+  gupdate (L1 x) (Stay (L1 d)) = L1 (gupdate x d)
+  gupdate (R1 x) (Stay (R1 d)) = R1 (gupdate x d)
 
   -- Estos casos no deberían pasar. Los estados no coinciden: no podemos
   -- quedarnos a la derecha si ya estamos a la izquierda. Por lo tanto, para
   -- mantener la totalidad de la función, no hacemos nada.
-  update (L1 x) (Stay (R1 _)) = L1 x
-  update (R1 x) (Stay (L1 _)) = R1 x
+  gupdate (L1 x) (Stay (R1 _)) = L1 x
+  gupdate (R1 x) (Stay (L1 _)) = R1 x
 
-  difference :: (x :+: y) v -> (x :+: y) v -> Choice x y v
-  difference (L1 x) (L1 y) = Stay (L1 (difference x y))
-  difference (R1 x) (R1 y) = Stay (R1 (difference x y))
-  difference (L1 x) (R1 _) = Move (L1 x)
-  difference (R1 x) (L1 _) = Move (R1 x)
+  gdifference :: (x :+: y) v -> (x :+: y) v -> Choice x y v
+  gdifference (L1 x) (L1 y) = Stay (L1 (gdifference x y))
+  gdifference (R1 x) (R1 y) = Stay (R1 (gdifference x y))
+  gdifference (L1 x) (R1 _) = Move (L1 x)
+  gdifference (R1 x) (L1 _) = Move (R1 x)
 ```
 
 Con esto, tenemos todas las instancias que necesitamos para derivar `Change`

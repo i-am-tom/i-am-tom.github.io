@@ -126,7 +126,7 @@ simply-typed lambda calculus using a class to which they refer as a _change
 structure_. We can view this class as a subclass of `Action`:
 
 ```haskell
-type Change :: Type -> Type
+type Change :: Type -> Constraint
 class Action (Delta x) x => Change x where
   type Delta x :: Type
 
@@ -172,7 +172,7 @@ implementation for any `Generic` type. Doing so means we only have six cases to
 handle: `M1`, `V1`, `(:+:)`, `U1`, `(:*:)`, and `K1`.
 
 ```haskell
-type GChange :: (Type -> Type) -> Type
+type GChange :: (Type -> Type) -> Constraint
 class (forall x. Monoid (GDelta rep x)) => GChange rep where
   type GDelta rep :: Type -> Type
 
