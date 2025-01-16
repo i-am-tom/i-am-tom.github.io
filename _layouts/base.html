@@ -1,9 +1,23 @@
+{% if page.url == '/' %}
+  {% assign canonical = site.url %}
+{% else %}
+  {% assign canonical = page.url | absolute_url %}
+{% endif %}
+
+{% if page.description == nil %}
+  {% assign description = page.title %}
+{% else %}
+  {% assign description = page.description %}
+{% endif %}
+
 <!DOCTYPE html>
 <html lang="{{ page.language }}">
   <head>
+    <meta name="description" content="{{ page.description or page.title }}">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1" />
     <link type="application/atom+xml" rel="alternate" href="/feed/{{ page.language }}.xml" title="{{ site.title }}">
 
+    <link rel="canonical" href="{{ canonical }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Staatliches&display=swap" rel="stylesheet">
@@ -16,15 +30,15 @@
       <div class="header-container">
         <header class="header">
           {% capture home %}/{{ page.language }}/{% endcapture %}
-          <a class="header-home" href="/{{ page.language }}">
-            {% if page.url != home %}
+          {% if page.url != home %}
+            <a class="header-home" href="/{{ page.language }}">
               🏠
 
               <span class="visually-hidden">
                 {{ site.data.text.return_home[page.language] }}
               </span>
-            {% endif %}
-          </a>
+            </a>
+          {% endif %}
           {% if page.url != '/404.html' %}
             <ul class="header-language-selection">
               {% for language in site.data.languages %}
