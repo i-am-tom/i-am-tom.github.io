@@ -1,5 +1,5 @@
 ---
-title: Programant amb gatets, galetes i clips
+title: Programant amb Gatets, Galetes i Clips
 ---
 
 Fa uns caps de setmana, [el meu amic Uri][uri-github] va participar en una game
