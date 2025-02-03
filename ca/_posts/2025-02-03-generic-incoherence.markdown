@@ -116,7 +116,7 @@ GHC no té ni idea de com s’assigna una representació a `Int`, i per això en
 
 Tenim un dilema: no podem interrogar un valor encallat sense crear un nou valor encallat. En realitat, [hauria de ser impossible detectar si un valor està encallat](https://blog.csongor.co.uk/report-stuck-families/): si intentem prendre una decisió amb un valor encallat obtindrem una nova decisió encallada… però queda una opció.
 
-Podemos resoldre el cap d’una instància amb un valor encallat:
+Podem resoldre el cap d’una instància amb un valor encallat:
 
 ```haskell
 type IsGeneric :: (Type -> Type) -> Constraint
@@ -223,7 +223,7 @@ instance (Contravariant o, Functor o)
   to = RepWrapper . phantom
 ```
 
-Aquest no és un tipus interessant: conté una representació genèric contiene una representación genérica, y *su* representación genérica está definida por lo que está conteniendo. En esencia, parece simplemente un `newtype` transparente, pero con este tipo podemos resolver todos nuestros otros problemas con `Generic`, convirtiendo nuestro `HKD` en el tipo de `Wrapped`:
+Aquest no és un tipus interessant: conté una representació genèric contiene una representación genérica, y *su* representación genérica está definida por lo que está conteniendo. En esencia, parece simplemente un `newtype` transparente, pero con este tipo podem resolver todos nuestros otros problemas con `Generic`, convirtiendo nuestro `HKD` en el tipo de `Wrapped`:
 
 ```haskell
 repWrapper :: forall xs p x f. GHKD xs (Rep x) f p => Iso' (RepWrapper p) (HKD xs x f)
