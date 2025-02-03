@@ -135,6 +135,10 @@ li {
   &:last-child { margin-bottom: 0 }
 }
 
+sup {
+  line-height: 0px;
+}
+
 /* Header */
 
 .header-container {
